@@ -24,26 +24,7 @@ A **Aura Farm** é um sistema web que permite o gerenciamento completo de uma lo
 
 ## 2. Instruções para Uso
 
-Estas instruções são para quem quer apenas **usar** o sistema, sem necessidade de conhecimento técnico.
 
-### Pré-requisitos
-
-- Servidor web com suporte a PHP (recomendado: XAMPP ou similar)
-- MySQL instalado
-- Navegador Chrome (versão 120 ou superior) ou Firefox (versão 120 ou superior)
-
-### Passos
-
-1. Faça o download do projeto clicando em **Code > Download ZIP** nesta página
-2. Extraia o conteúdo do ZIP na pasta `htdocs` do seu XAMPP (ou equivalente)
-3. Importe o banco de dados:
-   - Abra o **phpMyAdmin** (`http://localhost/phpmyadmin`)
-   - Crie um banco chamado `aura_farm`
-   - Importe o arquivo `database/aura_farm.sql`
-4. Acesse o sistema pelo navegador: `http://localhost/Aura-Farm`
-5. Crie uma conta ou use as credenciais de teste:
-   - **Email:** `teste@aura.com`
-   - **Senha:** `123456`
 
 ---
 
