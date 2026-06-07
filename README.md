@@ -119,7 +119,7 @@ Aura-Farm/
 │   └── prototipos/
 │
 ├── padroes-adotados/                     # Convenções do projeto
-│   ├── Regras_de_Verificacao_e_Analise_de_Requisitos.md
+│   ├── Regras_de_Verificacao_e_Analise_de_Requisitos.pdf
 │   ├── padrao-commits.md
 │   ├── padrao-codigo.md
 │   └── padrao-nomenclatura.md
