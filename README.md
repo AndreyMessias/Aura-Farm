@@ -2,18 +2,16 @@
 
 > Projeto Final — GCC188 Engenharia de Software  
 > Universidade Federal de Lavras (UFLA)
-
 ---
-
 ## 1. Contexto do Problema e Solução
 
 ### Problema
 
-Pequenas lojas de roupas ainda dependem de processos manuais para gerenciar seus produtos, pedidos e clientes. Isso gera dificuldades como perda de controle do estoque, erros em pedidos e falta de organização nos registros de vendas.
+Uma pequena loja de roupas chamada Aura Farm ainda depende de processos manuais para gerenciar seus produtos, pedidos e clientes. Isso gera dificuldades como perda de controle do estoque, erros em pedidos e falta de organização nos registros de vendas.
 
 ### Solução
 
-A **Aura Farm** é um sistema web que permite o gerenciamento completo de uma loja de roupas. O sistema oferece:
+A **Aura Farm** é um sistema web que permite o gerenciamento completo da loja de roupas. O sistema oferece:
 
 - Cadastro, consulta, edição e exclusão de **produtos** (nome, descrição, tamanho, cor, preço e estoque)
 - Registro e gerenciamento de **pedidos**, integrando produtos e endereços de entrega
@@ -68,18 +66,21 @@ define('DB_NAME', 'aura_farm');
 
 ## 4. Tecnologias
 
-| Finalidade | Tecnologia | Versão |
-|---|---|---|
-| Frontend | HTML5 | 5 |
-| Frontend | CSS3 | 3 |
-| Frontend | JavaScript | ES6+ |
-| Backend | PHP | 8.2 |
-| Banco de Dados | MySQL | 8.0 |
-| Servidor Local | XAMPP | 8.2 |
-| Versionamento | Git | 2.x |
-| Testes de Unidade | PHPUnit | 10.x |
-| Testes de Interface | Selenium | 4.x |
-| IDE | VS Code | 1.x |
+| Finalidade                  | Tecnologia              | Versão     |
+| --------------------------- | ----------------------- | ---------- |
+| Frontend                    | HTML5                   | 5          |
+| Frontend                    | CSS3                    | 3          |
+| Frontend                    | JavaScript              | ES6+       |
+| Backend                     | Java                    | 21 |
+| Framework Backend           | Spring Boot             | 3.x        |
+| Persistência de Dados       | Spring Data JPA         | 3.x        |
+| Banco de Dados              | MySQL                   | 8.0        |
+| Gerenciador de Dependências | Maven                   | 3.x        |
+| Versionamento               | Git                     | 2.x        |
+| Testes de Unidade           | JUnit                   | 5          |
+| Testes de Interface         | Selenium                | 4.x        |
+| IDE                         | IntelliJ IDEA / VS Code | Atual      |
+
 
 ---
 
@@ -87,23 +88,74 @@ define('DB_NAME', 'aura_farm');
 
 ```
 Aura-Farm/
-├── config/              # Configurações do sistema (banco de dados, constantes)
-├── database/            # Script SQL para criação e população do banco
-├── docs/                # Documentação do projeto
-├── Padrões Adotados/    # Regras e critérios de desenvolvimento
-├── Requisitos/          # Documento de requisitos, casos de uso e protótipos
-├── src/                 # Código-fonte principal
-│   ├── controllers/     # Controladores (lógica de negócio)
-│   ├── models/          # Modelos (comunicação com o banco de dados)
-│   └── views/           # Telas e interfaces do sistema
-├── public/              # Arquivos públicos (CSS, JS, imagens)
+│
+├── backend/                                # API Spring Boot
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── br/com/aurafarm/
+│   │   │   │       ├── controller/         # Endpoints REST
+│   │   │   │       ├── service/            # Regras de negócio
+│   │   │   │       ├── repository/         # Persistência de dados
+│   │   │   │       ├── model/              # Entidades JPA
+│   │   │   │       ├── dto/                # Objetos de transferência
+│   │   │   │       ├── config/             # Configurações do Spring
+│   │   │   │       ├── exception/          # Tratamento de exceções
+│   │   │   │       └── AuraFarmApplication.java
+│   │   │   │
+│   │   │   └── resources/
+│   │   │       ├── application.properties
+│   │   │       ├── schema.sql             
+│   │   │       ├── data.sql               
+│   │   │       └── static/
+│   │   │
+│   │   └── test/
+│   │       └── java/
+│   │
+│   ├── pom.xml
+│   └── .gitignore
+│
+├── frontend/                               # HTML, CSS e JavaScript
+│   ├── pages/
+│   │   ├── index.html
+│   │   ├── login.html
+│   │   ├── dashboard.html
+│   │   └── usuarios.html
+│   │
 │   ├── css/
+│   │   ├── style.css
+│   │   ├── login.css
+│   │   └── dashboard.css
+│   │
 │   ├── js/
-│   └── img/
-├── tests/               # Testes unitários e de validação
-│   ├── unit/            # Testes PHPUnit
-│   └── selenium/        # Scripts Selenium
-└── README.md
+│   │   ├── api.js                         # Comunicação com o backend
+│   │   ├── login.js
+│   │   ├── dashboard.js
+│   │   └── usuarios.js
+│   │
+│   ├── img/
+│   │
+│   └── .gitignore
+│
+├── docs/                                   # Documentação geral
+│   ├── arquitetura.md
+│   ├── api.md
+│   └── diagramas/
+│
+├── requisitos/                             # Engenharia de requisitos
+│   ├── requisitos-funcionais.md
+│   ├── requisitos-nao-funcionais.md
+│   ├── casos-de-uso.pdf
+│   └── prototipos/
+│
+├── padroes-adotados/                       # Convenções do projeto
+│   ├── padrao-commits.md
+│   ├── padrao-codigo.md
+│   └── padrao-nomenclatura.md
+│
+├── .gitignore
+│
+└── README.md                               
 ```
 
 ---
