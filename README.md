@@ -28,7 +28,7 @@ A **Aura Farm** é um sistema web que permite o gerenciamento completo da loja d
 
 ## 3. Instruções para Devs
 
-> Em breve.## 2. Instruções para Uso
+> Em breve.## 2.
 
 
 
