@@ -22,45 +22,15 @@ A **Aura Farm** é um sistema web que permite o gerenciamento completo da loja d
 
 ## 2. Instruções para Uso
 
-
+> Em breve.
 
 ---
 
 ## 3. Instruções para Devs
 
-Siga as instruções abaixo para configurar seu ambiente de desenvolvimento:
+> Em breve.## 2. Instruções para Uso
 
-### 3.1 Clonar o projeto
 
-```bash
-git clone https://github.com/AndreyMessias/Aura-Farm.git
-```
-
-Ou baixe o ZIP e extraia na pasta desejada.
-
-### 3.2 Configurar o banco de dados
-
-1. Crie o banco `aura_farm` no MySQL
-2. Importe o arquivo `database/aura_farm.sql`:
-
-```bash
-mysql -u root -p aura_farm < database/aura_farm.sql
-```
-
-3. Configure as credenciais no arquivo `config/database.php`:
-
-```php
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'aura_farm');
-```
-
-### 3.3 Executar o projeto
-
-1. Coloque o projeto na pasta `htdocs` do XAMPP
-2. Inicie o Apache e o MySQL pelo painel do XAMPP
-3. Acesse: `http://localhost/Aura-Farm`
 
 ---
 
