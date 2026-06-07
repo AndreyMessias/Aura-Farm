@@ -118,7 +118,8 @@ Aura-Farm/
 │   ├── casos-de-uso.pdf
 │   └── prototipos/
 │
-├── padroes-adotados/                       # Convenções do projeto
+├── padroes-adotados/                     # Convenções do projeto
+│   ├── Regras_de_Verificacao_e_Analise_de_Requisitos.md
 │   ├── padrao-commits.md
 │   ├── padrao-codigo.md
 │   └── padrao-nomenclatura.md
