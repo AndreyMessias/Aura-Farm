@@ -131,22 +131,29 @@ Aura-Farm/
 
 ---
 
-## 6. Principais Funcionalidades
+## 6. Funcionalidades
 
-- RF01 — Cadastrar usuário
-- RF02 — Realizar login
-- RF03 — Cadastrar produto
-- RF04 — Consultar produto
-- RF05 — Editar produto
-- RF06 — Excluir produto
-- RF07 — Cadastrar endereço de entrega
-- RF08 — Consultar endereço de entrega
-- RF09 — Editar endereço de entrega
-- RF10 — Excluir endereço de entrega
-- RF11 — Realizar pedido
-- RF12 — Consultar pedidos
-- RF13 — Alterar status do pedido
-- RF14 — Cancelar pedido
+- RF01 — Cadastrar Fornecedor
+- RF02 — Consultar Fornecedor
+- RF03 — Alterar Fornecedor
+- RF04 — Excluir Fornecedor
+- RF05 — Cadastrar Funcionário
+- RF06 — Consultar Funcionário
+- RF07 — Editar Funcionário
+- RF08 — Demitir/Remover Funcionário
+- RF09 — Realizar login
+- RF10 — Recuperar senha
+- RF11 — Visualizar perfil
+- RF12 — Usuário alterar o próprio perfil
+- RF13 — Cadastrar Venda
+- RF14 — Consultar Venda
+- RF15 - Alterar Status da Venda
+- RF16 - Alterar toda a Venda
+- RF17 - Excluir Venda
+- RF18 - Cadastrar Produto
+- RF19 - Consultar Produto
+- RF20 - Alterar Produto
+- RF21 - Excluir Produto
 
 ---
 
