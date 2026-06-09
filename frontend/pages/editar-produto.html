@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura Farm — Editar Produto</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+</head>
+<body>
+<div class="app-layout">
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-text">AURA</div>
+      <div class="logo-sub">FARM</div>
+    </div>
+    <div class="nav">
+      <div class="nav-section"><div class="nav-label">Geral</div>
+        <a href="dashboard.html" class="nav-item"><i class="ti ti-layout-dashboard"></i> Dashboard</a>
+      </div>
+      <div class="nav-section"><div class="nav-label">Catálogo</div>
+        <a href="produtos.html" class="nav-item active"><i class="ti ti-shirt"></i> Produtos</a>
+      </div>
+      <div class="nav-section"><div class="nav-label">Vendas</div>
+        <a href="vendas.html" class="nav-item"><i class="ti ti-shopping-cart"></i> Vendas</a>
+      </div>
+      <div class="nav-section"><div class="nav-label">Fornecedores</div>
+        <a href="fornecedores.html" class="nav-item"><i class="ti ti-truck"></i> Fornecedores</a>
+      </div>
+      <div class="nav-section"><div class="nav-label">Funcionários</div>
+        <a href="funcionarios.html" class="nav-item"><i class="ti ti-users"></i> Funcionários</a>
+      </div>
+      <div class="nav-section"><div class="nav-label">Conta</div>
+        <a href="perfil.html" class="nav-item"><i class="ti ti-user"></i> Meu Perfil</a>
+        <a href="login.html" class="nav-item"><i class="ti ti-logout"></i> Sair</a>
+      </div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="user-info">
+        <div class="user-avatar">AM</div>
+        <div>
+          <div class="user-name">Andrey Messias</div>
+          <div class="user-role">Administrador</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="page-title">EDITAR PRODUTO</div>
+      <div class="breadcrumb">Produtos / Editar</div>
+    </div>
+    <div class="content">
+      <div class="form-card">
+        <div class="form-section-title">ALTERAR PRODUTO</div>
+        <div class="field"><label>Código</label><input type="text" value="CAM-001" disabled /></div>
+        <div class="field"><label>Nome do produto</label><input type="text" value="Camiseta Oversized" /></div>
+        <div class="field"><label>Descrição</label><textarea rows="3">100% algodão premium, estampa frontal</textarea></div>
+        <div class="row"><div class="field"><label>Tamanho</label><select><option selected>M</option><option>G</option><option>GG</option></select></div><div class="field"><label>Cor</label><input type="text" value="Preto" /></div></div>
+        <div class="row"><div class="field"><label>Preço (R$)</label><input type="number" step="0.01" value="89.90" /></div><div class="field"><label>Quantidade em estoque</label><input type="number" value="32" /></div></div>
+        <div class="field"><label>Fornecedor</label><select><option selected>Fornecedor A</option><option>Fornecedor B</option></select></div>
+        <div class="form-actions"><a href="produtos.html"><button class="btn-outline">CANCELAR</button></a><button class="btn-dark" onclick="alert('Produto atualizado (simulação).')">SALVAR ALTERAÇÕES</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
