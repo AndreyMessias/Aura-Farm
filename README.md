@@ -1,22 +1,28 @@
-#  Aura Farm — Loja de Roupas Online
+#  Aura Farm — Sistema de Gestão de Loja
 
 > Projeto Final — GCC188 Engenharia de Software  
 > Universidade Federal de Lavras (UFLA)
+
 ---
+
 ## 1. Contexto do Problema e Solução
 
 ### Problema
 
-Uma pequena loja de roupas chamada Aura Farm ainda depende de processos manuais para gerenciar seus produtos, pedidos e clientes. Isso gera dificuldades como perda de controle do estoque, erros em pedidos e falta de organização nos registros de vendas.
+Uma pequena loja de roupas chamada Aura Farm ainda depende de processos manuais para gerenciar seus produtos, fornecedores, funcionários e vendas. Isso gera dificuldades como perda de controle do estoque, erros no registro de vendas, dificuldade na gestão de fornecedores e falta de organização dos dados da loja.
 
 ### Solução
 
-A **Aura Farm** é um sistema web que permite o gerenciamento completo da loja de roupas. O sistema oferece:
+A **Aura Farm** é um sistema web de gestão interna para loja de roupas, permitindo o controle completo das operações. O sistema oferece:
 
-- Cadastro, consulta, edição e exclusão de **produtos** (nome, descrição, tamanho, cor, preço e estoque)
-- Registro e gerenciamento de **pedidos**, integrando produtos e endereços de entrega
-- Controle de **endereços de entrega** por usuário
-- **Login e autenticação** para acesso seguro ao sistema
+- **Autenticação** – Login seguro e recuperação de senha
+- **Dashboard** – Visão geral com indicadores de vendas e últimas vendas
+- **Gerenciamento de Produtos** – Cadastro, consulta, edição e exclusão de produtos (nome, descrição, tamanho, cor, preço e estoque)
+- **Gerenciamento de Fornecedores** – Cadastro, consulta, edição e exclusão de fornecedores
+- **Gerenciamento de Funcionários** – Cadastro, consulta, edição e demissão de funcionários (apenas gerente)
+- **Registro de Vendas** – Cadastro, consulta, alteração de status e cancelamento de vendas
+- **Perfil de Usuário** – Visualização e edição do próprio perfil
+- **Controle de permissões** – Gerente tem acesso total; Funcionário tem acesso restrito a vendas e consulta de produtos
 
 ---
 
@@ -28,9 +34,7 @@ A **Aura Farm** é um sistema web que permite o gerenciamento completo da loja d
 
 ## 3. Instruções para Devs
 
-> Em breve.## 2.
-
-
+> Em breve.
 
 ---
 
@@ -41,7 +45,7 @@ A **Aura Farm** é um sistema web que permite o gerenciamento completo da loja d
 | Frontend                    | HTML5                   | 5          |
 | Frontend                    | CSS3                    | 3          |
 | Frontend                    | JavaScript              | ES6+       |
-| Backend                     | Java                    | 21 |
+| Backend                     | Java                    | 21         |
 | Framework Backend           | Spring Boot             | 3.x        |
 | Persistência de Dados       | Spring Data JPA         | 3.x        |
 | Banco de Dados              | MySQL                   | 8.0        |
@@ -50,7 +54,6 @@ A **Aura Farm** é um sistema web que permite o gerenciamento completo da loja d
 | Testes de Unidade           | JUnit                   | 5          |
 | Testes de Interface         | Selenium                | 4.x        |
 | IDE                         | IntelliJ IDEA / VS Code | Atual      |
-
 
 ---
 
@@ -129,31 +132,42 @@ Aura-Farm/
 └── README.md                               
 ```
 
----
 
 ## 6. Funcionalidades
 
+### Fornecedor (Gerente)
 - RF01 — Cadastrar Fornecedor
 - RF02 — Consultar Fornecedor
 - RF03 — Alterar Fornecedor
 - RF04 — Excluir Fornecedor
+
+### Funcionário (Gerente)
 - RF05 — Cadastrar Funcionário
 - RF06 — Consultar Funcionário
 - RF07 — Editar Funcionário
 - RF08 — Demitir/Remover Funcionário
+
+### Autenticação e Perfil (Todos)
 - RF09 — Realizar login
 - RF10 — Recuperar senha
 - RF11 — Visualizar perfil
 - RF12 — Usuário alterar o próprio perfil
+
+### Venda (Gerente e Funcionário)
 - RF13 — Cadastrar Venda
 - RF14 — Consultar Venda
-- RF15 - Alterar Status da Venda
-- RF16 - Alterar toda a Venda
-- RF17 - Excluir Venda
-- RF18 - Cadastrar Produto
-- RF19 - Consultar Produto
-- RF20 - Alterar Produto
-- RF21 - Excluir Produto
+- RF15 — Alterar Status da Venda
+- RF16 — Alterar toda a Venda
+- RF17 — Excluir Venda (apenas Gerente)
+
+### Dashboard (Gerente e Funcionário)
+- RF18 — Visualizar Dashboard
+
+### Produto
+- RF19 — Cadastrar Produto (Gerente)
+- RF20 — Consultar Produto (Todos)
+- RF21 — Alterar Produto (Gerente)
+- RF22 — Excluir Produto (Gerente)
 
 ---
 
