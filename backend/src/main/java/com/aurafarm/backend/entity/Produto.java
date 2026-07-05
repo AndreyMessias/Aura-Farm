@@ -5,6 +5,7 @@ import com.aurafarm.backend.enums.Tamanho;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.AccessLevel;
+import org.hibernate.annotations.ColumnTransformer;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -34,7 +35,8 @@ public class Produto {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "tamanho", nullable = false, length = 10)
+    @Column(name = "tamanho", nullable = false)
+    @ColumnTransformer(write = "CAST(? AS tamanho_produto)")
     private Tamanho tamanho;
 
     @Column(name = "preco", precision = 12, scale = 2, nullable = false)
@@ -53,7 +55,8 @@ public class Produto {
     private String cor;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false, length = 20)
+    @Column(name = "status", nullable = false)
+    @ColumnTransformer(write = "CAST(? AS status_produto)")
     @Builder.Default
     private StatusProduto status = StatusProduto.ATIVO;
 

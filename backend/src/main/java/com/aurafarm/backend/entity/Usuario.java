@@ -4,8 +4,10 @@ import com.aurafarm.backend.enums.Cargo;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.AccessLevel;
+import org.hibernate.annotations.ColumnTransformer;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,17 +31,21 @@ public class Usuario {
     @Column(name = "id_usuario")
     private Long id;
 
+    @Column(name = "nome", length = 100, nullable = false)
+    private String nome;
+
     @Column(name = "cpf", length = 11, nullable = false)
     private String cpf;
 
     @Column(name = "email", length = 100, nullable = false)
     private String email;
 
-    @Column(name = "senha", length = 255, nullable = false)
+    @Column(name = "senha", length = 255)
     private String senha;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "cargo", nullable = false)
+    @ColumnTransformer(write = "CAST(? AS tipo_usuario)")
     private Cargo cargo;
 
     @Column(name = "telefone", length = 20)
@@ -58,8 +64,9 @@ public class Usuario {
     @JoinColumn(name = "usuario_cadastrou_id")
     private Usuario usuarioCadastrou;
 
+    @Builder.Default
     @OneToMany(mappedBy = "usuarioCadastrou", fetch = FetchType.LAZY)
-    private java.util.List<Usuario> usuariosCadastrados;
+    private List<Usuario> usuariosCadastrados = new ArrayList<>();
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
@@ -77,5 +84,21 @@ public class Usuario {
     @PreUpdate
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
+    }
+
+    public boolean isPrimeiroAcesso() {
+        return senha == null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Usuario usuario)) return false;
+        return id != null && id.equals(usuario.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }
