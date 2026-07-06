@@ -1,5 +1,6 @@
 package com.aurafarm.backend.service;
 
+import com.aurafarm.backend.dto.request.UsuarioProfileRequest;
 import com.aurafarm.backend.dto.request.UsuarioRequest;
 import com.aurafarm.backend.dto.response.AuthResponse;
 import com.aurafarm.backend.dto.response.LoginResponse;
@@ -27,4 +28,8 @@ public interface UsuarioService {
     UsuarioResponse definirSenhaPrimeiroAcesso(String email, String senha);
 
     LoginResponse login(String email, String senha);
+
+    UsuarioResponse me(String email);
+
+    UsuarioResponse atualizarMeuPerfil(String email, UsuarioProfileRequest request);
 }

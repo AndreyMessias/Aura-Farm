@@ -31,7 +31,9 @@ public class SecurityConfig {
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/aurafarm/auth/**").permitAll()
-                .requestMatchers(HttpMethod.POST, "/aurafarm/usuarios").hasRole("GERENTE")
+                .requestMatchers(HttpMethod.GET, "/aurafarm/usuarios/me").authenticated()
+                .requestMatchers(HttpMethod.PUT, "/aurafarm/usuarios/me").authenticated()
+                .requestMatchers("/aurafarm/usuarios/**").hasRole("GERENTE")
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

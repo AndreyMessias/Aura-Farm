@@ -1,0 +1,260 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2026-07-06T11:00:00.000Z",
+  "__export_source": "opencode",
+  "resources": [
+    {
+      "_id": "__workspace_1__",
+      "_type": "workspace",
+      "name": "Aura Farm API",
+      "scope": "collection",
+      "parentId": null
+    },
+    {
+      "_id": "__env_global__",
+      "_type": "environment",
+      "name": "Global",
+      "data": {
+        "base_url": "http://localhost:8080/aurafarm",
+        "token": ""
+      },
+      "parentId": "__workspace_1__"
+    },
+    {
+      "_id": "fld_usuarios",
+      "_type": "request_group",
+      "name": "Usuários",
+      "description": "CRUD de usuários (requer token GERENTE para criar)",
+      "parentId": "__workspace_1__",
+      "environment": {}
+    },
+    {
+      "_id": "fld_auth",
+      "_type": "request_group",
+      "name": "Autenticação",
+      "description": "Login, validação de email e definição de senha",
+      "parentId": "__workspace_1__",
+      "environment": {}
+    },
+    {
+      "_id": "req_login_admin",
+      "_type": "request",
+      "name": "Login Admin",
+      "description": "Login como administrador (seed: admin@aurafarm.com / admin123)",
+      "parentId": "fld_auth",
+      "method": "POST",
+      "url": "{{ base_url }}/auth/login",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"admin@aurafarm.com\",\n  \"senha\": \"admin123\"\n}"
+      },
+      "authentication": {},
+      "metaSortKey": 100
+    },
+    {
+      "_id": "req_login_func",
+      "_type": "request",
+      "name": "Login Funcionário",
+      "description": "Login como funcionário (trocar email/senha após criar)",
+      "parentId": "fld_auth",
+      "method": "POST",
+      "url": "{{ base_url }}/auth/login",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"joao@email.com\",\n  \"senha\": \"minhasenha123\"\n}"
+      },
+      "authentication": {},
+      "metaSortKey": 90
+    },
+    {
+      "_id": "req_validar_email",
+      "_type": "request",
+      "name": "Validar Email (primeiro acesso)",
+      "description": "Valida se o email existe e está no primeiro acesso (senha=null)",
+      "parentId": "fld_auth",
+      "method": "POST",
+      "url": "{{ base_url }}/auth/validar-email",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"joao@email.com\"\n}"
+      },
+      "authentication": {},
+      "metaSortKey": 80
+    },
+    {
+      "_id": "req_definir_senha",
+      "_type": "request",
+      "name": "Definir Senha (primeiro acesso)",
+      "description": "Define a senha do funcionário no primeiro acesso",
+      "parentId": "fld_auth",
+      "method": "POST",
+      "url": "{{ base_url }}/auth/definir-senha",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"joao@email.com\",\n  \"senha\": \"minhasenha123\",\n  \"confirmacaoSenha\": \"minhasenha123\"\n}"
+      },
+      "authentication": {},
+      "metaSortKey": 70
+    },
+    {
+      "_id": "req_meu_perfil",
+      "_type": "request",
+      "name": "Meu Perfil (GET)",
+      "description": "RF011 - Visualizar o próprio perfil (qualquer role autenticado)",
+      "parentId": "fld_usuarios",
+      "method": "GET",
+      "url": "{{ base_url }}/usuarios/me",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {},
+      "authentication": {},
+      "metaSortKey": 195
+    },
+    {
+      "_id": "req_atualizar_meu_perfil",
+      "_type": "request",
+      "name": "Atualizar Meu Perfil (PUT)",
+      "description": "RF012 - Altera o próprio perfil (qualquer role autenticado). CPF e cargo não podem ser alterados.",
+      "parentId": "fld_usuarios",
+      "method": "PUT",
+      "url": "{{ base_url }}/usuarios/me",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Meu Nome Atualizado\",\n  \"email\": \"meu@email.com\",\n  \"telefone\": \"11988888888\",\n  \"cidade\": \"São Paulo\",\n  \"estado\": \"SP\",\n  \"pais\": \"Brasil\"\n}"
+      },
+      "authentication": {},
+      "metaSortKey": 198
+    },
+    {
+      "_id": "req_criar_usuario",
+      "_type": "request",
+      "name": "Criar Usuário",
+      "description": "Cria um novo usuário (requer token de GERENTE)",
+      "parentId": "fld_usuarios",
+      "method": "POST",
+      "url": "{{ base_url }}/usuarios",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"João Silva\",\n  \"cpf\": \"39711291452\",\n  \"email\": \"joao@email.com\",\n  \"cargo\": \"FUNCIONARIO\",\n  \"telefone\": \"11999999999\",\n  \"cidade\": \"São Paulo\",\n  \"estado\": \"SP\",\n  \"pais\": \"Brasil\"\n}"
+      },
+      "authentication": {},
+      "metaSortKey": 200
+    },
+    {
+      "_id": "req_listar_usuarios",
+      "_type": "request",
+      "name": "Listar Usuários",
+      "description": "Lista todos os usuários (paginado). Suporta ?nome= para filtrar.",
+      "parentId": "fld_usuarios",
+      "method": "GET",
+      "url": "{{ base_url }}/usuarios",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {},
+      "authentication": {},
+      "metaSortKey": 210
+    },
+    {
+      "_id": "req_listar_usuarios_filtro",
+      "_type": "request",
+      "name": "Listar Usuários (filtro nome)",
+      "description": "Lista usuários filtrando por nome (case-insensitive)",
+      "parentId": "fld_usuarios",
+      "method": "GET",
+      "url": "{{ base_url }}/usuarios?nome=joão",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {},
+      "authentication": {},
+      "metaSortKey": 215
+    },
+    {
+      "_id": "req_buscar_usuario_id",
+      "_type": "request",
+      "name": "Buscar Usuário por ID",
+      "description": "Busca um usuário pelo ID",
+      "parentId": "fld_usuarios",
+      "method": "GET",
+      "url": "{{ base_url }}/usuarios/6",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {},
+      "authentication": {},
+      "metaSortKey": 220
+    },
+    {
+      "_id": "req_buscar_usuario_cpf",
+      "_type": "request",
+      "name": "Buscar Usuário por CPF",
+      "description": "Busca um usuário pelo CPF",
+      "parentId": "fld_usuarios",
+      "method": "GET",
+      "url": "{{ base_url }}/usuarios/cpf/39711291452",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {},
+      "authentication": {},
+      "metaSortKey": 230
+    },
+    {
+      "_id": "req_atualizar_usuario",
+      "_type": "request",
+      "name": "Atualizar Usuário",
+      "description": "Atualiza dados de um usuário existente",
+      "parentId": "fld_usuarios",
+      "method": "PUT",
+      "url": "{{ base_url }}/usuarios/6",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"João Silva Atualizado\",\n  \"cpf\": \"39711291452\",\n  \"email\": \"joao.novo@email.com\",\n  \"cargo\": \"FUNCIONARIO\",\n  \"telefone\": \"11988888888\",\n  \"cidade\": \"Rio de Janeiro\",\n  \"estado\": \"RJ\"\n}"
+      },
+      "authentication": {},
+      "metaSortKey": 240
+    },
+    {
+      "_id": "req_deletar_usuario",
+      "_type": "request",
+      "name": "Deletar Usuário",
+      "description": "Remove um usuário pelo ID",
+      "parentId": "fld_usuarios",
+      "method": "DELETE",
+      "url": "{{ base_url }}/usuarios/999",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {},
+      "authentication": {},
+      "metaSortKey": 250
+    }
+  ]
+}

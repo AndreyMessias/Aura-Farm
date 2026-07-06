@@ -2,6 +2,7 @@ package com.aurafarm.backend.service.impl;
 
 import com.aurafarm.backend.config.JwtTokenProvider;
 import com.aurafarm.backend.dto.mapper.UsuarioMapper;
+import com.aurafarm.backend.dto.request.UsuarioProfileRequest;
 import com.aurafarm.backend.dto.request.UsuarioRequest;
 import com.aurafarm.backend.dto.response.AuthResponse;
 import com.aurafarm.backend.dto.response.LoginResponse;
@@ -153,5 +154,33 @@ public class UsuarioServiceImpl implements UsuarioService {
                 .email(usuario.getEmail())
                 .cargo(usuario.getCargo())
                 .build();
+    }
+
+    @Override
+    public UsuarioResponse me(String email) {
+        Usuario usuario = usuarioRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuário", "email", email));
+        return usuarioMapper.toResponse(usuario);
+    }
+
+    @Override
+    @Transactional
+    public UsuarioResponse atualizarMeuPerfil(String email, UsuarioProfileRequest request) {
+        Usuario usuario = usuarioRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuário", "email", email));
+
+        if (!usuario.getEmail().equals(request.getEmail()) && usuarioRepository.existsByEmail(request.getEmail())) {
+            throw new BusinessException("Email já cadastrado", "EMAIL_DUPLICADO");
+        }
+
+        usuario.setNome(request.getNome());
+        usuario.setEmail(request.getEmail());
+        usuario.setTelefone(request.getTelefone());
+        usuario.setCidade(request.getCidade());
+        usuario.setEstado(request.getEstado());
+        usuario.setPais(request.getPais() != null ? request.getPais() : "Brasil");
+
+        usuario = usuarioRepository.save(usuario);
+        return usuarioMapper.toResponse(usuario);
     }
 }

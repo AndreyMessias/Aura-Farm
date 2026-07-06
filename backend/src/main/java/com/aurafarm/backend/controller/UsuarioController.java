@@ -1,5 +1,6 @@
 package com.aurafarm.backend.controller;
 
+import com.aurafarm.backend.dto.request.UsuarioProfileRequest;
 import com.aurafarm.backend.dto.request.UsuarioRequest;
 import com.aurafarm.backend.dto.response.UsuarioListItemResponse;
 import com.aurafarm.backend.dto.response.UsuarioResponse;
@@ -9,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -26,6 +28,19 @@ public class UsuarioController {
         return ResponseEntity.created(URI.create("/aurafarm/usuarios/" + response.getId())).body(response);
     }
 
+    @GetMapping("/me")
+    public ResponseEntity<UsuarioResponse> me(Authentication authentication) {
+        UsuarioResponse response = usuarioService.me(authentication.getName());
+        return ResponseEntity.ok(response);
+    }
+
+    @PutMapping("/me")
+    public ResponseEntity<UsuarioResponse> atualizarMeuPerfil(Authentication authentication,
+                                                              @Valid @RequestBody UsuarioProfileRequest request) {
+        UsuarioResponse response = usuarioService.atualizarMeuPerfil(authentication.getName(), request);
+        return ResponseEntity.ok(response);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioResponse> buscarPorId(@PathVariable Long id) {
         UsuarioResponse response = usuarioService.buscarPorId(id);
@@ -40,7 +55,7 @@ public class UsuarioController {
 
     @GetMapping
     public ResponseEntity<Page<UsuarioListItemResponse>> listar(Pageable pageable,
-                                                                @RequestParam(required = false) String nome) {
+                                                                 @RequestParam(required = false) String nome) {
         Page<UsuarioListItemResponse> page = usuarioService.listar(pageable, nome);
         return ResponseEntity.ok(page);
     }
