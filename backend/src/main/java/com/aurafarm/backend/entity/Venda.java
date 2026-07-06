@@ -91,7 +91,7 @@ public class Venda {
 
     private void recalcularTotais() {
         this.valorTotal = itens.stream()
-                .map(ItemVenda::getPrecoUnitario)
+                .map(ItemVenda::getSubtotal)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
         this.quantidadeTotal = itens.stream()
                 .mapToInt(ItemVenda::getQuantidade)

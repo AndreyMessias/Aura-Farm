@@ -169,12 +169,8 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario usuario = usuarioRepository.findByEmail(email)
                 .orElseThrow(() -> new ResourceNotFoundException("Usuário", "email", email));
 
-        if (!usuario.getEmail().equals(request.getEmail()) && usuarioRepository.existsByEmail(request.getEmail())) {
-            throw new BusinessException("Email já cadastrado", "EMAIL_DUPLICADO");
-        }
-
+        // E-mail e CPF são bloqueados para edição pelo próprio usuário (RF012).
         usuario.setNome(request.getNome());
-        usuario.setEmail(request.getEmail());
         usuario.setTelefone(request.getTelefone());
         usuario.setCidade(request.getCidade());
         usuario.setEstado(request.getEstado());
