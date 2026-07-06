@@ -144,6 +144,12 @@ function lerParametroUrl(nome) {
   return new URLSearchParams(window.location.search).get(nome);
 }
 
+function escaparHtml(texto) {
+  const div = document.createElement("div");
+  div.textContent = texto ?? "";
+  return div.innerHTML;
+}
+
 function exibirErro(elemento, mensagem) {
   if (!elemento) {
     alert(mensagem);

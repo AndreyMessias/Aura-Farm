@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aura Farm — Editar Produto</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 </head>
@@ -88,21 +88,12 @@
             <div class="sidebar-footer">
 
                 <div class="user-info">
-
-                    <div class="user-avatar">
-                        AM
-                    </div>
+                    <div class="user-avatar">--</div>
 
                     <div>
-                        <div class="user-name">
-                            Andrey Messias
-                        </div>
-
-                        <div class="user-role">
-                            Administrador
-                        </div>
+                        <div class="user-name">--</div>
+                        <div class="user-role">--</div>
                     </div>
-
                 </div>
 
             </div>
@@ -131,20 +122,21 @@
                         ALTERAR PRODUTO
                     </div>
 
+                    <div id="erro-produto" class="form-error"></div>
+
                     <div class="field">
-                        <label>Código</label>
-                        <input type="text" value="CAM-001" disabled>
+                        <label>Código (11 caracteres)</label>
+                        <input type="text" id="produto-codigo" maxlength="11">
                     </div>
 
                     <div class="field">
                         <label>Nome do produto</label>
-                        <input type="text" value="Camiseta Oversized">
+                        <input type="text" id="produto-nome">
                     </div>
 
                     <div class="field">
                         <label>Descrição</label>
-
-                        <textarea rows="3">100% algodão premium, estampa frontal</textarea>
+                        <textarea rows="3" id="produto-descricao"></textarea>
                     </div>
 
                     <div class="row">
@@ -152,16 +144,19 @@
                         <div class="field">
                             <label>Tamanho</label>
 
-                            <select>
-                                <option selected>M</option>
-                                <option>G</option>
-                                <option>GG</option>
+                            <select id="produto-tamanho">
+                                <option value="PP">PP</option>
+                                <option value="P">P</option>
+                                <option value="M">M</option>
+                                <option value="G">G</option>
+                                <option value="GG">GG</option>
+                                <option value="UNICO">Único</option>
                             </select>
                         </div>
 
                         <div class="field">
                             <label>Cor</label>
-                            <input type="text" value="Preto">
+                            <input type="text" id="produto-cor">
                         </div>
 
                     </div>
@@ -170,12 +165,12 @@
 
                         <div class="field">
                             <label>Preço (R$)</label>
-                            <input type="number" step="0.01" value="89.90">
+                            <input type="number" step="0.01" min="0.01" id="produto-preco">
                         </div>
 
                         <div class="field">
                             <label>Quantidade em estoque</label>
-                            <input type="number" value="32">
+                            <input type="number" min="0" id="produto-estoque">
                         </div>
 
                     </div>
@@ -184,9 +179,8 @@
 
                         <label>Fornecedor</label>
 
-                        <select>
-                            <option selected>Fornecedor A</option>
-                            <option>Fornecedor B</option>
+                        <select id="produto-fornecedor">
+                            <option value="">Carregando fornecedores...</option>
                         </select>
 
                     </div>
@@ -199,8 +193,7 @@
                             </button>
                         </a>
 
-                        <button class="btn-dark"
-                            onclick="alert('Produto atualizado (simulação).')">
+                        <button class="btn-dark" id="btn-salvar-produto">
                             SALVAR ALTERAÇÕES
                         </button>
 
@@ -214,7 +207,9 @@
 
     </div>
 
-    <script src="script.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/layout.js"></script>
+    <script src="../js/produtos.js"></script>
 
 </body>
 
