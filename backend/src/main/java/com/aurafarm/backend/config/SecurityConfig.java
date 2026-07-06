@@ -34,6 +34,16 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/aurafarm/usuarios/me").authenticated()
                 .requestMatchers(HttpMethod.PUT, "/aurafarm/usuarios/me").authenticated()
                 .requestMatchers("/aurafarm/usuarios/**").hasRole("GERENTE")
+                // Fornecedor (RF001-004): exclusivo do Gerente
+                .requestMatchers("/aurafarm/fornecedores/**").hasRole("GERENTE")
+                // Produto (RF019-022): consulta liberada para Gerente e Funcionário; escrita exclusiva do Gerente
+                .requestMatchers(HttpMethod.GET, "/aurafarm/produtos/**").authenticated()
+                .requestMatchers("/aurafarm/produtos/**").hasRole("GERENTE")
+                // Venda (RF013-017): Gerente e Funcionário podem cadastrar/consultar/alterar; exclusão é exclusiva do Gerente
+                .requestMatchers(HttpMethod.DELETE, "/aurafarm/vendas/**").hasRole("GERENTE")
+                .requestMatchers("/aurafarm/vendas/**").authenticated()
+                // Dashboard (RF018): Gerente e Funcionário
+                .requestMatchers("/aurafarm/dashboard/**").authenticated()
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
