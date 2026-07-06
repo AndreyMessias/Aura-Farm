@@ -4,7 +4,8 @@ import com.aurafarm.backend.enums.Cargo;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.AccessLevel;
-import org.hibernate.annotations.ColumnTransformer;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -44,8 +45,8 @@ public class Usuario {
     private String senha;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "cargo", nullable = false)
-    @ColumnTransformer(write = "CAST(? AS tipo_usuario)")
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    @Column(name = "cargo", nullable = false, columnDefinition = "tipo_usuario")
     private Cargo cargo;
 
     @Column(name = "telefone", length = 20)

@@ -4,7 +4,8 @@ import com.aurafarm.backend.enums.StatusPedido;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.AccessLevel;
-import org.hibernate.annotations.ColumnTransformer;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -34,8 +35,8 @@ public class Venda {
     private LocalDateTime dataPedido;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
-    @ColumnTransformer(write = "CAST(? AS status_pedido)")
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    @Column(name = "status", nullable = false, columnDefinition = "status_pedido")
     @Builder.Default
     private StatusPedido status = StatusPedido.PENDENTE;
 
