@@ -1,0 +1,660 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2026-07-06T11:00:00.000Z",
+  "__export_source": "opencode",
+  "resources": [
+    {
+      "_id": "__workspace_1__",
+      "_type": "workspace",
+      "name": "Aura Farm API",
+      "scope": "collection",
+      "parentId": null
+    },
+    {
+      "_id": "__env_global__",
+      "_type": "environment",
+      "name": "Global",
+      "data": {
+        "base_url": "http://localhost:8080/aurafarm",
+        "token": "",
+        "codigo_recuperacao": ""
+      },
+      "parentId": "__workspace_1__"
+    },
+    {
+      "_id": "fld_usuarios",
+      "_type": "request_group",
+      "name": "Usuários",
+      "description": "CRUD de usuários (requer token GERENTE para criar)",
+      "parentId": "__workspace_1__",
+      "environment": {}
+    },
+    {
+      "_id": "fld_auth",
+      "_type": "request_group",
+      "name": "Autenticação",
+      "description": "Login, validação de email e definição de senha",
+      "parentId": "__workspace_1__",
+      "environment": {}
+    },
+    {
+      "_id": "req_login_admin",
+      "_type": "request",
+      "name": "Login Admin",
+      "description": "Login como administrador (seed: admin@aurafarm.com / admin123)",
+      "parentId": "fld_auth",
+      "method": "POST",
+      "url": "{{ base_url }}/auth/login",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"admin@aurafarm.com\",\n  \"senha\": \"admin123\"\n}"
+      },
+      "authentication": {},
+      "metaSortKey": 100
+    },
+    {
+      "_id": "req_login_func",
+      "_type": "request",
+      "name": "Login Funcionário",
+      "description": "Login como funcionário (trocar email/senha após criar)",
+      "parentId": "fld_auth",
+      "method": "POST",
+      "url": "{{ base_url }}/auth/login",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"joao@email.com\",\n  \"senha\": \"minhasenha123\"\n}"
+      },
+      "authentication": {},
+      "metaSortKey": 90
+    },
+    {
+      "_id": "req_validar_email",
+      "_type": "request",
+      "name": "Validar Email (primeiro acesso)",
+      "description": "Valida se o email existe e está no primeiro acesso (senha=null)",
+      "parentId": "fld_auth",
+      "method": "POST",
+      "url": "{{ base_url }}/auth/validar-email",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"joao@email.com\"\n}"
+      },
+      "authentication": {},
+      "metaSortKey": 80
+    },
+    {
+      "_id": "req_definir_senha",
+      "_type": "request",
+      "name": "Definir Senha (primeiro acesso)",
+      "description": "Define a senha do funcionário no primeiro acesso",
+      "parentId": "fld_auth",
+      "method": "POST",
+      "url": "{{ base_url }}/auth/definir-senha",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"joao@email.com\",\n  \"senha\": \"minhasenha123\",\n  \"confirmacaoSenha\": \"minhasenha123\"\n}"
+      },
+      "authentication": {},
+      "metaSortKey": 70
+    },
+    {
+      "_id": "req_recuperar_senha_solicitar",
+      "_type": "request",
+      "name": "Recuperar Senha - 1. Solicitar Código",
+      "description": "RF010 - Envia um código de 6 dígitos por e-mail (válido por 5 min). Retorna 'E-mail inválido' se o e-mail não estiver cadastrado.",
+      "parentId": "fld_auth",
+      "method": "POST",
+      "url": "{{ base_url }}/auth/recuperar-senha/solicitar",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"joao@email.com\"\n}"
+      },
+      "authentication": {},
+      "metaSortKey": 65
+    },
+    {
+      "_id": "req_recuperar_senha_verificar",
+      "_type": "request",
+      "name": "Recuperar Senha - 2. Verificar Código",
+      "description": "RF010 - Confere o código recebido por e-mail, sem consumi-lo. Cole o código recebido no campo 'codigo' (ou salve em codigo_recuperacao no ambiente).",
+      "parentId": "fld_auth",
+      "method": "POST",
+      "url": "{{ base_url }}/auth/recuperar-senha/verificar",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"joao@email.com\",\n  \"codigo\": \"{{ codigo_recuperacao }}\"\n}"
+      },
+      "authentication": {},
+      "metaSortKey": 60
+    },
+    {
+      "_id": "req_recuperar_senha_redefinir",
+      "_type": "request",
+      "name": "Recuperar Senha - 3. Redefinir Senha",
+      "description": "RF010 - Redefine a senha usando o mesmo código (ainda válido). Após sucesso, o código é invalidado.",
+      "parentId": "fld_auth",
+      "method": "POST",
+      "url": "{{ base_url }}/auth/recuperar-senha/redefinir",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"joao@email.com\",\n  \"codigo\": \"{{ codigo_recuperacao }}\",\n  \"novaSenha\": \"novaSenha123\",\n  \"confirmacaoNovaSenha\": \"novaSenha123\"\n}"
+      },
+      "authentication": {},
+      "metaSortKey": 55
+    },
+    {
+      "_id": "req_meu_perfil",
+      "_type": "request",
+      "name": "Meu Perfil (GET)",
+      "description": "RF011 - Visualizar o próprio perfil (qualquer role autenticado)",
+      "parentId": "fld_usuarios",
+      "method": "GET",
+      "url": "{{ base_url }}/usuarios/me",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {},
+      "authentication": {},
+      "metaSortKey": 195
+    },
+    {
+      "_id": "req_atualizar_meu_perfil",
+      "_type": "request",
+      "name": "Atualizar Meu Perfil (PUT)",
+      "description": "RF012 - Altera o próprio perfil (qualquer role autenticado). E-mail e CPF não podem ser alterados pelo próprio usuário (não fazem mais parte deste payload).",
+      "parentId": "fld_usuarios",
+      "method": "PUT",
+      "url": "{{ base_url }}/usuarios/me",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Meu Nome Atualizado\",\n  \"telefone\": \"11988888888\",\n  \"cidade\": \"São Paulo\",\n  \"estado\": \"SP\",\n  \"pais\": \"Brasil\"\n}"
+      },
+      "authentication": {},
+      "metaSortKey": 198
+    },
+    {
+      "_id": "req_criar_usuario",
+      "_type": "request",
+      "name": "Criar Usuário",
+      "description": "Cria um novo usuário (requer token de GERENTE)",
+      "parentId": "fld_usuarios",
+      "method": "POST",
+      "url": "{{ base_url }}/usuarios",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"João Silva\",\n  \"cpf\": \"39711291452\",\n  \"email\": \"joao@email.com\",\n  \"cargo\": \"FUNCIONARIO\",\n  \"telefone\": \"11999999999\",\n  \"cidade\": \"São Paulo\",\n  \"estado\": \"SP\",\n  \"pais\": \"Brasil\"\n}"
+      },
+      "authentication": {},
+      "metaSortKey": 200
+    },
+    {
+      "_id": "req_listar_usuarios",
+      "_type": "request",
+      "name": "Listar Usuários",
+      "description": "Lista todos os usuários (paginado). Suporta ?nome= para filtrar.",
+      "parentId": "fld_usuarios",
+      "method": "GET",
+      "url": "{{ base_url }}/usuarios",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {},
+      "authentication": {},
+      "metaSortKey": 210
+    },
+    {
+      "_id": "req_listar_usuarios_filtro",
+      "_type": "request",
+      "name": "Listar Usuários (filtro nome)",
+      "description": "Lista usuários filtrando por nome (case-insensitive)",
+      "parentId": "fld_usuarios",
+      "method": "GET",
+      "url": "{{ base_url }}/usuarios?nome=joão",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {},
+      "authentication": {},
+      "metaSortKey": 215
+    },
+    {
+      "_id": "req_buscar_usuario_id",
+      "_type": "request",
+      "name": "Buscar Usuário por ID",
+      "description": "Busca um usuário pelo ID",
+      "parentId": "fld_usuarios",
+      "method": "GET",
+      "url": "{{ base_url }}/usuarios/6",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {},
+      "authentication": {},
+      "metaSortKey": 220
+    },
+    {
+      "_id": "req_buscar_usuario_cpf",
+      "_type": "request",
+      "name": "Buscar Usuário por CPF",
+      "description": "Busca um usuário pelo CPF",
+      "parentId": "fld_usuarios",
+      "method": "GET",
+      "url": "{{ base_url }}/usuarios/cpf/39711291452",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {},
+      "authentication": {},
+      "metaSortKey": 230
+    },
+    {
+      "_id": "req_atualizar_usuario",
+      "_type": "request",
+      "name": "Atualizar Usuário",
+      "description": "Atualiza dados de um usuário existente",
+      "parentId": "fld_usuarios",
+      "method": "PUT",
+      "url": "{{ base_url }}/usuarios/6",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"João Silva Atualizado\",\n  \"cpf\": \"39711291452\",\n  \"email\": \"joao.novo@email.com\",\n  \"cargo\": \"FUNCIONARIO\",\n  \"telefone\": \"11988888888\",\n  \"cidade\": \"Rio de Janeiro\",\n  \"estado\": \"RJ\"\n}"
+      },
+      "authentication": {},
+      "metaSortKey": 240
+    },
+    {
+      "_id": "req_deletar_usuario",
+      "_type": "request",
+      "name": "Deletar Usuário",
+      "description": "Remove um usuário pelo ID",
+      "parentId": "fld_usuarios",
+      "method": "DELETE",
+      "url": "{{ base_url }}/usuarios/999",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {},
+      "authentication": {},
+      "metaSortKey": 250
+    },
+    {
+      "_id": "fld_fornecedores",
+      "_type": "request_group",
+      "name": "Fornecedores",
+      "description": "RF001-RF004 - CRUD de fornecedores (exclusivo do Gerente)",
+      "parentId": "__workspace_1__",
+      "environment": {}
+    },
+    {
+      "_id": "req_criar_fornecedor",
+      "_type": "request",
+      "name": "Criar Fornecedor",
+      "description": "RF001 - Requer token de Gerente. CNPJ e e-mail devem ser únicos.",
+      "parentId": "fld_fornecedores",
+      "method": "POST",
+      "url": "{{ base_url }}/fornecedores",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Malhas Aura Ltda\",\n  \"cnpj\": \"12345678000199\",\n  \"email\": \"contato@malhasaura.com.br\",\n  \"telefone\": \"1133334444\",\n  \"cidade\": \"São Paulo\",\n  \"estado\": \"SP\",\n  \"pais\": \"Brasil\"\n}"
+      },
+      "authentication": {},
+      "metaSortKey": 100
+    },
+    {
+      "_id": "req_listar_fornecedores",
+      "_type": "request",
+      "name": "Listar Fornecedores",
+      "description": "RF002 - Lista resumida (nome, email, cnpj). Suporta ?nome= ou ?cnpj= para busca.",
+      "parentId": "fld_fornecedores",
+      "method": "GET",
+      "url": "{{ base_url }}/fornecedores",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {},
+      "authentication": {},
+      "metaSortKey": 110
+    },
+    {
+      "_id": "req_buscar_fornecedor_id",
+      "_type": "request",
+      "name": "Buscar Fornecedor por ID",
+      "description": "RF002 - Busca um fornecedor específico",
+      "parentId": "fld_fornecedores",
+      "method": "GET",
+      "url": "{{ base_url }}/fornecedores/1",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {},
+      "authentication": {},
+      "metaSortKey": 120
+    },
+    {
+      "_id": "req_atualizar_fornecedor",
+      "_type": "request",
+      "name": "Atualizar Fornecedor",
+      "description": "RF003 - Altera um fornecedor existente",
+      "parentId": "fld_fornecedores",
+      "method": "PUT",
+      "url": "{{ base_url }}/fornecedores/1",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Malhas Aura Ltda\",\n  \"cnpj\": \"12345678000199\",\n  \"email\": \"financeiro@malhasaura.com.br\",\n  \"telefone\": \"1133335555\",\n  \"cidade\": \"Campinas\",\n  \"estado\": \"SP\",\n  \"pais\": \"Brasil\"\n}"
+      },
+      "authentication": {},
+      "metaSortKey": 130
+    },
+    {
+      "_id": "req_deletar_fornecedor",
+      "_type": "request",
+      "name": "Deletar Fornecedor",
+      "description": "RF004 - Bloqueado (409) se houver produtos vinculados a este fornecedor",
+      "parentId": "fld_fornecedores",
+      "method": "DELETE",
+      "url": "{{ base_url }}/fornecedores/1",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {},
+      "authentication": {},
+      "metaSortKey": 140
+    },
+    {
+      "_id": "fld_produtos",
+      "_type": "request_group",
+      "name": "Produtos",
+      "description": "RF019-RF022 - Consulta liberada para Gerente e Funcionário; escrita exclusiva do Gerente",
+      "parentId": "__workspace_1__",
+      "environment": {}
+    },
+    {
+      "_id": "req_criar_produto",
+      "_type": "request",
+      "name": "Criar Produto",
+      "description": "RF019 - Requer token de Gerente. Troque fornecedorId pelo ID de um fornecedor já cadastrado. Código deve ter 11 caracteres e ser único; preço deve ser maior que zero.",
+      "parentId": "fld_produtos",
+      "method": "POST",
+      "url": "{{ base_url }}/produtos",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"codigo\": \"AB123456789\",\n  \"nome\": \"Camiseta Básica\",\n  \"descricao\": \"Camiseta 100% algodão\",\n  \"fornecedorId\": 1,\n  \"tamanho\": \"M\",\n  \"cor\": \"Branco\",\n  \"preco\": 49.90,\n  \"quantidadeEstoque\": 100\n}"
+      },
+      "authentication": {},
+      "metaSortKey": 100
+    },
+    {
+      "_id": "req_listar_produtos",
+      "_type": "request",
+      "name": "Listar Produtos",
+      "description": "RF020 - Lista resumida (código, nome, tamanho, estoque, preço)",
+      "parentId": "fld_produtos",
+      "method": "GET",
+      "url": "{{ base_url }}/produtos",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {},
+      "authentication": {},
+      "metaSortKey": 110
+    },
+    {
+      "_id": "req_buscar_produtos_filtro",
+      "_type": "request",
+      "name": "Buscar Produtos (filtros combináveis)",
+      "description": "RF020 - Suporta ?codigo=, ?nome=, ?fornecedorId=, ?tamanho= (PP|P|M|G|GG|UNICO) e ?cor=, combináveis entre si",
+      "parentId": "fld_produtos",
+      "method": "GET",
+      "url": "{{ base_url }}/produtos?nome=camiseta&tamanho=M",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {},
+      "authentication": {},
+      "metaSortKey": 115
+    },
+    {
+      "_id": "req_buscar_produto_id",
+      "_type": "request",
+      "name": "Buscar Produto por ID",
+      "description": "RF020 - Busca um produto específico",
+      "parentId": "fld_produtos",
+      "method": "GET",
+      "url": "{{ base_url }}/produtos/1",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {},
+      "authentication": {},
+      "metaSortKey": 120
+    },
+    {
+      "_id": "req_atualizar_produto",
+      "_type": "request",
+      "name": "Atualizar Produto",
+      "description": "RF021 - Requer token de Gerente",
+      "parentId": "fld_produtos",
+      "method": "PUT",
+      "url": "{{ base_url }}/produtos/1",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"codigo\": \"AB123456789\",\n  \"nome\": \"Camiseta Básica\",\n  \"descricao\": \"Camiseta 100% algodão\",\n  \"fornecedorId\": 1,\n  \"tamanho\": \"G\",\n  \"cor\": \"Branco\",\n  \"preco\": 54.90,\n  \"quantidadeEstoque\": 80\n}"
+      },
+      "authentication": {},
+      "metaSortKey": 130
+    },
+    {
+      "_id": "req_deletar_produto",
+      "_type": "request",
+      "name": "Deletar Produto",
+      "description": "RF022 - Requer token de Gerente. Bloqueado (409) se houver vendas vinculadas a este produto",
+      "parentId": "fld_produtos",
+      "method": "DELETE",
+      "url": "{{ base_url }}/produtos/1",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {},
+      "authentication": {},
+      "metaSortKey": 140
+    },
+    {
+      "_id": "fld_vendas",
+      "_type": "request_group",
+      "name": "Vendas",
+      "description": "RF013-RF017 - Gerente e Funcionário podem cadastrar/consultar/alterar; exclusão é exclusiva do Gerente",
+      "parentId": "__workspace_1__",
+      "environment": {}
+    },
+    {
+      "_id": "req_criar_venda",
+      "_type": "request",
+      "name": "Criar Venda",
+      "description": "RF013 - codigoProduto deve existir (use o código de um produto já cadastrado). Quantidade deve ser maior que zero.",
+      "parentId": "fld_vendas",
+      "method": "POST",
+      "url": "{{ base_url }}/vendas",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"itens\": [\n    { \"codigoProduto\": \"AB123456789\", \"quantidade\": 2 }\n  ],\n  \"endereco\": {\n    \"rua\": \"Rua das Flores\",\n    \"numero\": \"123\",\n    \"bairro\": \"Centro\",\n    \"cidade\": \"São Paulo\",\n    \"estado\": \"SP\",\n    \"cep\": \"01001000\",\n    \"complemento\": \"Apto 45\"\n  }\n}"
+      },
+      "authentication": {},
+      "metaSortKey": 100
+    },
+    {
+      "_id": "req_listar_vendas",
+      "_type": "request",
+      "name": "Listar Vendas",
+      "description": "RF014 - Lista resumida (data, itens, total, status)",
+      "parentId": "fld_vendas",
+      "method": "GET",
+      "url": "{{ base_url }}/vendas",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {},
+      "authentication": {},
+      "metaSortKey": 110
+    },
+    {
+      "_id": "req_buscar_vendas_data",
+      "_type": "request",
+      "name": "Buscar Vendas (número e/ou intervalo de datas)",
+      "description": "RF014 - Suporta ?numero=, ?dataInicio=YYYY-MM-DD e ?dataFim=YYYY-MM-DD, combináveis. dataInicio deve ser antes de dataFim.",
+      "parentId": "fld_vendas",
+      "method": "GET",
+      "url": "{{ base_url }}/vendas?dataInicio=2026-01-01&dataFim=2026-12-31",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {},
+      "authentication": {},
+      "metaSortKey": 115
+    },
+    {
+      "_id": "req_buscar_venda_id",
+      "_type": "request",
+      "name": "Buscar Venda por ID",
+      "description": "RF014 - Detalhe completo de uma venda (itens e endereço)",
+      "parentId": "fld_vendas",
+      "method": "GET",
+      "url": "{{ base_url }}/vendas/1",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {},
+      "authentication": {},
+      "metaSortKey": 120
+    },
+    {
+      "_id": "req_alterar_status_venda",
+      "_type": "request",
+      "name": "Alterar Status da Venda",
+      "description": "RF015 - status: PENDENTE | ENVIADO | ENTREGUE | CANCELADO",
+      "parentId": "fld_vendas",
+      "method": "PATCH",
+      "url": "{{ base_url }}/vendas/1/status",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"status\": \"ENVIADO\"\n}"
+      },
+      "authentication": {},
+      "metaSortKey": 130
+    },
+    {
+      "_id": "req_atualizar_venda",
+      "_type": "request",
+      "name": "Alterar Toda a Venda",
+      "description": "RF016 - Substitui produtos e endereço da venda",
+      "parentId": "fld_vendas",
+      "method": "PUT",
+      "url": "{{ base_url }}/vendas/1",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"itens\": [\n    { \"codigoProduto\": \"AB123456789\", \"quantidade\": 3 }\n  ],\n  \"endereco\": {\n    \"rua\": \"Rua das Flores\",\n    \"numero\": \"123\",\n    \"bairro\": \"Centro\",\n    \"cidade\": \"Rio de Janeiro\",\n    \"estado\": \"RJ\",\n    \"cep\": \"20000000\",\n    \"complemento\": \"Casa\"\n  }\n}"
+      },
+      "authentication": {},
+      "metaSortKey": 140
+    },
+    {
+      "_id": "req_deletar_venda",
+      "_type": "request",
+      "name": "Deletar Venda",
+      "description": "RF017 - Requer token de Gerente. Bloqueado (409) se status não for PENDENTE ou CANCELADO",
+      "parentId": "fld_vendas",
+      "method": "DELETE",
+      "url": "{{ base_url }}/vendas/1",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {},
+      "authentication": {},
+      "metaSortKey": 150
+    },
+    {
+      "_id": "fld_dashboard",
+      "_type": "request_group",
+      "name": "Dashboard",
+      "description": "RF018 - Liberado para Gerente e Funcionário",
+      "parentId": "__workspace_1__",
+      "environment": {}
+    },
+    {
+      "_id": "req_dashboard",
+      "_type": "request",
+      "name": "Obter Dashboard",
+      "description": "RF018 - Total de produtos, vendas por status e últimas 5 vendas",
+      "parentId": "fld_dashboard",
+      "method": "GET",
+      "url": "{{ base_url }}/dashboard",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ token }}" }
+      ],
+      "body": {},
+      "authentication": {},
+      "metaSortKey": 100
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+CREATE TYPE tipo_usuario AS ENUM ('FUNCIONARIO', 'GERENTE');
+CREATE TYPE tamanho_produto AS ENUM ('PP', 'P', 'M', 'G', 'GG', 'UNICO');
+CREATE TYPE status_produto AS ENUM ('ATIVO', 'INATIVO', 'FORA_DE_LINHA');
+CREATE TYPE status_pedido AS ENUM ('PENDENTE', 'ENVIADO', 'ENTREGUE', 'CANCELADO');
