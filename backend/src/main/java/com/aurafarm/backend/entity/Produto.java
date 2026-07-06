@@ -48,6 +48,9 @@ public class Produto {
     @Column(name = "codigo", length = 100, nullable = false)
     private String codigo;
 
+    @Column(name = "nome", length = 100, nullable = false)
+    private String nome;
+
     @Column(name = "descricao", length = 100)
     private String descricao;
 

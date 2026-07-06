@@ -11,4 +11,5 @@ import java.util.List;
 public interface ItemVendaRepository extends JpaRepository<ItemVenda, Long> {
     List<ItemVenda> findByVenda(Venda venda);
     List<ItemVenda> findByProdutoId(Long produtoId);
+    boolean existsByProdutoId(Long produtoId);
 }
