@@ -27,7 +27,8 @@ public class EnderecoRequest {
     private String cidade;
 
     @NotBlank(message = "Estado é obrigatório")
-    @Size(max = 2, min = 2, message = "Estado deve ter 2 caracteres")
+    @Pattern(regexp = "AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO",
+            message = "Estado deve ser uma sigla de UF válida")
     private String estado;
 
     @NotBlank(message = "CEP é obrigatório")
