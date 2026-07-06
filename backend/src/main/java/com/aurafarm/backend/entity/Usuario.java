@@ -60,6 +60,12 @@ public class Usuario {
     @Column(name = "pais", length = 100)
     private String pais;
 
+    @Column(name = "reset_codigo", length = 255)
+    private String resetCodigo;
+
+    @Column(name = "reset_codigo_expira_em")
+    private LocalDateTime resetCodigoExpiraEm;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_cadastrou_id")
     private Usuario usuarioCadastrou;

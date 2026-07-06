@@ -2,8 +2,11 @@ package com.aurafarm.backend.service.impl;
 
 import com.aurafarm.backend.config.JwtTokenProvider;
 import com.aurafarm.backend.dto.mapper.UsuarioMapper;
+import com.aurafarm.backend.dto.request.RedefinirSenhaRequest;
+import com.aurafarm.backend.dto.request.SolicitarRecuperacaoSenhaRequest;
 import com.aurafarm.backend.dto.request.UsuarioProfileRequest;
 import com.aurafarm.backend.dto.request.UsuarioRequest;
+import com.aurafarm.backend.dto.request.VerificarCodigoRecuperacaoRequest;
 import com.aurafarm.backend.dto.response.AuthResponse;
 import com.aurafarm.backend.dto.response.LoginResponse;
 import com.aurafarm.backend.dto.response.UsuarioListItemResponse;
@@ -12,6 +15,7 @@ import com.aurafarm.backend.entity.Usuario;
 import com.aurafarm.backend.exception.BusinessException;
 import com.aurafarm.backend.exception.ResourceNotFoundException;
 import com.aurafarm.backend.repository.UsuarioRepository;
+import com.aurafarm.backend.service.EmailService;
 import com.aurafarm.backend.service.UsuarioService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -20,14 +24,21 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.SecureRandom;
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 public class UsuarioServiceImpl implements UsuarioService {
+
+    private static final int CODIGO_VALIDADE_MINUTOS = 5;
+    private static final SecureRandom RANDOM = new SecureRandom();
 
     private final UsuarioRepository usuarioRepository;
     private final UsuarioMapper usuarioMapper;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
+    private final EmailService emailService;
 
     @Override
     @Transactional
@@ -178,5 +189,73 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         usuario = usuarioRepository.save(usuario);
         return usuarioMapper.toResponse(usuario);
+    }
+
+    @Override
+    @Transactional
+    public AuthResponse solicitarRecuperacaoSenha(SolicitarRecuperacaoSenhaRequest request) {
+        Usuario usuario = usuarioRepository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new BusinessException("E-mail inválido", "EMAIL_INVALIDO"));
+
+        String codigo = gerarCodigo();
+        usuario.setResetCodigo(passwordEncoder.encode(codigo));
+        usuario.setResetCodigoExpiraEm(LocalDateTime.now().plusMinutes(CODIGO_VALIDADE_MINUTOS));
+        usuarioRepository.save(usuario);
+
+        emailService.enviarCodigoRecuperacaoSenha(usuario.getEmail(), usuario.getNome(), codigo);
+
+        return AuthResponse.builder()
+                .email(usuario.getEmail())
+                .nome(usuario.getNome())
+                .mensagem("Código de verificação enviado para o e-mail cadastrado.")
+                .build();
+    }
+
+    @Override
+    public AuthResponse verificarCodigoRecuperacao(VerificarCodigoRecuperacaoRequest request) {
+        Usuario usuario = buscarUsuarioComCodigoValido(request.getEmail(), request.getCodigo());
+
+        return AuthResponse.builder()
+                .email(usuario.getEmail())
+                .nome(usuario.getNome())
+                .mensagem("Código válido. Defina a nova senha.")
+                .build();
+    }
+
+    @Override
+    @Transactional
+    public UsuarioResponse redefinirSenha(RedefinirSenhaRequest request) {
+        if (!request.getNovaSenha().equals(request.getConfirmacaoNovaSenha())) {
+            throw new BusinessException("As senhas não coincidem", "SENHAS_NAO_COINCIDEM");
+        }
+
+        Usuario usuario = buscarUsuarioComCodigoValido(request.getEmail(), request.getCodigo());
+
+        usuario.setSenha(passwordEncoder.encode(request.getNovaSenha()));
+        usuario.setResetCodigo(null);
+        usuario.setResetCodigoExpiraEm(null);
+        usuario = usuarioRepository.save(usuario);
+
+        return usuarioMapper.toResponse(usuario);
+    }
+
+    private Usuario buscarUsuarioComCodigoValido(String email, String codigo) {
+        Usuario usuario = usuarioRepository.findByEmail(email)
+                .orElseThrow(() -> new BusinessException("E-mail inválido", "EMAIL_INVALIDO"));
+
+        if (usuario.getResetCodigo() == null || usuario.getResetCodigoExpiraEm() == null
+                || usuario.getResetCodigoExpiraEm().isBefore(LocalDateTime.now())) {
+            throw new BusinessException("Código expirado. Solicite um novo código.", "CODIGO_EXPIRADO");
+        }
+
+        if (!passwordEncoder.matches(codigo, usuario.getResetCodigo())) {
+            throw new BusinessException("Código inválido", "CODIGO_INVALIDO");
+        }
+
+        return usuario;
+    }
+
+    private String gerarCodigo() {
+        return String.format("%06d", RANDOM.nextInt(1_000_000));
     }
 }

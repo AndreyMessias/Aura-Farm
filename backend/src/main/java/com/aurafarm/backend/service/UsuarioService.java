@@ -6,6 +6,9 @@ import com.aurafarm.backend.dto.response.AuthResponse;
 import com.aurafarm.backend.dto.response.LoginResponse;
 import com.aurafarm.backend.dto.response.UsuarioListItemResponse;
 import com.aurafarm.backend.dto.response.UsuarioResponse;
+import com.aurafarm.backend.dto.request.RedefinirSenhaRequest;
+import com.aurafarm.backend.dto.request.SolicitarRecuperacaoSenhaRequest;
+import com.aurafarm.backend.dto.request.VerificarCodigoRecuperacaoRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -32,4 +35,10 @@ public interface UsuarioService {
     UsuarioResponse me(String email);
 
     UsuarioResponse atualizarMeuPerfil(String email, UsuarioProfileRequest request);
+
+    AuthResponse solicitarRecuperacaoSenha(SolicitarRecuperacaoSenhaRequest request);
+
+    AuthResponse verificarCodigoRecuperacao(VerificarCodigoRecuperacaoRequest request);
+
+    UsuarioResponse redefinirSenha(RedefinirSenhaRequest request);
 }
