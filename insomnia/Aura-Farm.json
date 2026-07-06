@@ -17,7 +17,8 @@
       "name": "Global",
       "data": {
         "base_url": "http://localhost:8080/aurafarm",
-        "token": ""
+        "token": "",
+        "codigo_recuperacao": ""
       },
       "parentId": "__workspace_1__"
     },
@@ -110,6 +111,60 @@
       "metaSortKey": 70
     },
     {
+      "_id": "req_recuperar_senha_solicitar",
+      "_type": "request",
+      "name": "Recuperar Senha - 1. Solicitar Código",
+      "description": "RF010 - Envia um código de 6 dígitos por e-mail (válido por 5 min). Retorna 'E-mail inválido' se o e-mail não estiver cadastrado.",
+      "parentId": "fld_auth",
+      "method": "POST",
+      "url": "{{ base_url }}/auth/recuperar-senha/solicitar",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"joao@email.com\"\n}"
+      },
+      "authentication": {},
+      "metaSortKey": 65
+    },
+    {
+      "_id": "req_recuperar_senha_verificar",
+      "_type": "request",
+      "name": "Recuperar Senha - 2. Verificar Código",
+      "description": "RF010 - Confere o código recebido por e-mail, sem consumi-lo. Cole o código recebido no campo 'codigo' (ou salve em codigo_recuperacao no ambiente).",
+      "parentId": "fld_auth",
+      "method": "POST",
+      "url": "{{ base_url }}/auth/recuperar-senha/verificar",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"joao@email.com\",\n  \"codigo\": \"{{ codigo_recuperacao }}\"\n}"
+      },
+      "authentication": {},
+      "metaSortKey": 60
+    },
+    {
+      "_id": "req_recuperar_senha_redefinir",
+      "_type": "request",
+      "name": "Recuperar Senha - 3. Redefinir Senha",
+      "description": "RF010 - Redefine a senha usando o mesmo código (ainda válido). Após sucesso, o código é invalidado.",
+      "parentId": "fld_auth",
+      "method": "POST",
+      "url": "{{ base_url }}/auth/recuperar-senha/redefinir",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"joao@email.com\",\n  \"codigo\": \"{{ codigo_recuperacao }}\",\n  \"novaSenha\": \"novaSenha123\",\n  \"confirmacaoNovaSenha\": \"novaSenha123\"\n}"
+      },
+      "authentication": {},
+      "metaSortKey": 55
+    },
+    {
       "_id": "req_meu_perfil",
       "_type": "request",
       "name": "Meu Perfil (GET)",
@@ -128,7 +183,7 @@
       "_id": "req_atualizar_meu_perfil",
       "_type": "request",
       "name": "Atualizar Meu Perfil (PUT)",
-      "description": "RF012 - Altera o próprio perfil (qualquer role autenticado). CPF e cargo não podem ser alterados.",
+      "description": "RF012 - Altera o próprio perfil (qualquer role autenticado). E-mail e CPF não podem ser alterados pelo próprio usuário (não fazem mais parte deste payload).",
       "parentId": "fld_usuarios",
       "method": "PUT",
       "url": "{{ base_url }}/usuarios/me",
@@ -138,7 +193,7 @@
       ],
       "body": {
         "mimeType": "application/json",
-        "text": "{\n  \"nome\": \"Meu Nome Atualizado\",\n  \"email\": \"meu@email.com\",\n  \"telefone\": \"11988888888\",\n  \"cidade\": \"São Paulo\",\n  \"estado\": \"SP\",\n  \"pais\": \"Brasil\"\n}"
+        "text": "{\n  \"nome\": \"Meu Nome Atualizado\",\n  \"telefone\": \"11988888888\",\n  \"cidade\": \"São Paulo\",\n  \"estado\": \"SP\",\n  \"pais\": \"Brasil\"\n}"
       },
       "authentication": {},
       "metaSortKey": 198
