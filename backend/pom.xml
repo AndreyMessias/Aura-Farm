@@ -136,7 +136,7 @@
 				<configuration>
 					<url>jdbc:postgresql://localhost:5432/aurafarm</url>
 					<user>postgres</user>
-					<password>1234</password>
+					<password>${env.DB_PASSWORD}</password>
 					<locations>
 						<location>filesystem:src/main/resources/db/migration</location>
 					</locations>
