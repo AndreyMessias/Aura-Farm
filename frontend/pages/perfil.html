@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aura Farm — Meu Perfil</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 </head>
@@ -75,11 +75,11 @@
 
             <div class="sidebar-footer">
                 <div class="user-info">
-                    <div class="user-avatar">AM</div>
+                    <div class="user-avatar">--</div>
 
                     <div>
-                        <div class="user-name">Andrey Messias</div>
-                        <div class="user-role">Administrador</div>
+                        <div class="user-name">--</div>
+                        <div class="user-role">--</div>
                     </div>
                 </div>
             </div>
@@ -101,21 +101,23 @@
                         DADOS PESSOAIS
                     </div>
 
+                    <div id="erro-perfil" class="form-error"></div>
+
                     <div class="field">
                         <label>Nome completo</label>
-                        <input type="text" value="Andrey Messias" disabled>
+                        <input type="text" id="perfil-nome" disabled>
                     </div>
 
                     <div class="row">
 
                         <div class="field">
                             <label>E-mail</label>
-                            <input type="email" value="andrey@aura.com" disabled>
+                            <input type="email" id="perfil-email" disabled>
                         </div>
 
                         <div class="field">
                             <label>CPF</label>
-                            <input type="text" value="123.456.789-00" disabled>
+                            <input type="text" id="perfil-cpf" disabled>
                         </div>
 
                     </div>
@@ -124,12 +126,12 @@
 
                         <div class="field">
                             <label>Telefone</label>
-                            <input type="text" value="(11) 99999-9999" disabled>
+                            <input type="text" id="perfil-telefone" disabled>
                         </div>
 
                         <div class="field">
                             <label>Cargo</label>
-                            <input type="text" value="Gerente" disabled>
+                            <input type="text" id="perfil-cargo" disabled>
                         </div>
 
                     </div>
@@ -138,19 +140,19 @@
 
                         <div class="field">
                             <label>Cidade</label>
-                            <input type="text" value="São Paulo" disabled>
+                            <input type="text" id="perfil-cidade" disabled>
                         </div>
 
                         <div class="field">
                             <label>Estado</label>
-                            <input type="text" value="SP" disabled>
+                            <input type="text" id="perfil-estado" disabled>
                         </div>
 
                     </div>
 
                     <div class="field">
                         <label>País</label>
-                        <input type="text" value="Brasil" disabled>
+                        <input type="text" id="perfil-pais" disabled>
                     </div>
 
                     <div class="form-actions">
@@ -169,7 +171,9 @@
 
     </div>
 
-    <script src="script.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/layout.js"></script>
+    <script src="../js/perfil.js"></script>
 
 </body>
 

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aura Farm — Editar Perfil</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 </head>
@@ -88,21 +88,12 @@
             <div class="sidebar-footer">
 
                 <div class="user-info">
-
-                    <div class="user-avatar">
-                        AM
-                    </div>
+                    <div class="user-avatar">--</div>
 
                     <div>
-                        <div class="user-name">
-                            Andrey Messias
-                        </div>
-
-                        <div class="user-role">
-                            Administrador
-                        </div>
+                        <div class="user-name">--</div>
+                        <div class="user-role">--</div>
                     </div>
-
                 </div>
 
             </div>
@@ -131,47 +122,49 @@
                         ALTERAR DADOS
                     </div>
 
+                    <div id="erro-editar-perfil" class="form-error"></div>
+
                     <div class="field">
                         <label>Nome completo</label>
-                        <input type="text" value="Andrey Messias">
+                        <input type="text" id="editar-perfil-nome">
                     </div>
 
                     <div class="row">
 
                         <div class="field">
                             <label>E-mail (não alterável)</label>
-                            <input type="email" value="andrey@aura.com" disabled>
+                            <input type="email" id="editar-perfil-email" disabled>
                         </div>
 
                         <div class="field">
                             <label>CPF (não alterável)</label>
-                            <input type="text" value="123.456.789-00" disabled>
+                            <input type="text" id="editar-perfil-cpf" disabled>
                         </div>
 
                     </div>
 
                     <div class="field">
                         <label>Telefone</label>
-                        <input type="text" value="(11) 99999-9999">
+                        <input type="text" id="editar-perfil-telefone">
                     </div>
 
                     <div class="row">
 
                         <div class="field">
                             <label>Cidade</label>
-                            <input type="text" value="São Paulo">
+                            <input type="text" id="editar-perfil-cidade">
                         </div>
 
                         <div class="field">
                             <label>Estado</label>
-                            <input type="text" value="SP">
+                            <select id="editar-perfil-estado"></select>
                         </div>
 
                     </div>
 
                     <div class="field">
                         <label>País</label>
-                        <input type="text" value="Brasil">
+                        <input type="text" id="editar-perfil-pais">
                     </div>
 
                     <div class="form-actions">
@@ -182,8 +175,7 @@
                             </button>
                         </a>
 
-                        <button class="btn-dark"
-                            onclick="alert('Perfil atualizado (simulação).')">
+                        <button class="btn-dark" id="btn-salvar-perfil">
                             SALVAR ALTERAÇÕES
                         </button>
 
@@ -197,7 +189,9 @@
 
     </div>
 
-    <script src="script.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/layout.js"></script>
+    <script src="../js/perfil.js"></script>
 
 </body>
 
