@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Farm — Nova Venda</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+</head>
+
+<body>
+
+    <div class="app-layout">
+
+        <div class="sidebar">
+
+            <div class="sidebar-logo">
+                <div class="logo-text">AURA</div>
+                <div class="logo-sub">FARM</div>
+            </div>
+
+            <div class="nav">
+
+                <div class="nav-section">
+                    <div class="nav-label">Geral</div>
+
+                    <a href="dashboard.html" class="nav-item">
+                        <i class="ti ti-layout-dashboard"></i>
+                        Dashboard
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-label">Catálogo</div>
+
+                    <a href="produtos.html" class="nav-item">
+                        <i class="ti ti-shirt"></i>
+                        Produtos
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-label">Vendas</div>
+
+                    <a href="vendas.html" class="nav-item active">
+                        <i class="ti ti-shopping-cart"></i>
+                        Vendas
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-label">Fornecedores</div>
+
+                    <a href="fornecedores.html" class="nav-item">
+                        <i class="ti ti-truck"></i>
+                        Fornecedores
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-label">Funcionários</div>
+
+                    <a href="funcionarios.html" class="nav-item">
+                        <i class="ti ti-users"></i>
+                        Funcionários
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-label">Conta</div>
+
+                    <a href="perfil.html" class="nav-item">
+                        <i class="ti ti-user"></i>
+                        Meu Perfil
+                    </a>
+
+                    <a href="login.html" class="nav-item">
+                        <i class="ti ti-logout"></i>
+                        Sair
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="sidebar-footer">
+
+                <div class="user-info">
+
+                    <div class="user-avatar">
+                        AM
+                    </div>
+
+                    <div>
+                        <div class="user-name">
+                            Andrey Messias
+                        </div>
+
+                        <div class="user-role">
+                            Administrador
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="main">
+
+            <div class="topbar">
+
+                <div class="page-title">
+                    REGISTRAR VENDA
+                </div>
+
+                <div class="breadcrumb">
+                    Vendas / Nova Venda
+                </div>
+
+            </div>
+
+            <div class="content">
+
+                <div class="pedido-layout">
+
+                    <div class="pedido-col">
+
+                        <div class="form-card">
+
+                            <div class="form-section-title">
+                                SELECIONAR PRODUTOS
+                            </div>
+
+                            <div class="product-item">
+
+                                <div class="product-check">
+                                    <input type="checkbox" checked>
+
+                                    <div>
+                                        <div class="product-info-name">
+                                            Camiseta Oversized
+                                        </div>
+
+                                        <div class="product-info-price">
+                                            R$ 89,90 — Preto, M
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="qty-control">
+                                    <button class="qty-btn">-</button>
+
+                                    <div class="qty-val">
+                                        2
+                                    </div>
+
+                                    <button class="qty-btn">+</button>
+                                </div>
+
+                            </div>
+
+                            <div class="product-item">
+
+                                <div class="product-check">
+                                    <input type="checkbox" checked>
+
+                                    <div>
+                                        <div class="product-info-name">
+                                            Calça Cargo
+                                        </div>
+
+                                        <div class="product-info-price">
+                                            R$ 199,00 — Bege, 40
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="qty-control">
+                                    <button class="qty-btn">-</button>
+
+                                    <div class="qty-val">
+                                        1
+                                    </div>
+
+                                    <button class="qty-btn">+</button>
+                                </div>
+
+                            </div>
+
+                            <div class="product-item">
+
+                                <div class="product-check">
+                                    <input type="checkbox">
+
+                                    <div>
+                                        <div class="product-info-name">
+                                            Moletom Aura
+                                        </div>
+
+                                        <div class="product-info-price">
+                                            R$ 159,00 — Off-white, G
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="qty-control">
+                                    <button class="qty-btn">-</button>
+
+                                    <div class="qty-val">
+                                        1
+                                    </div>
+
+                                    <button class="qty-btn">+</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-card">
+
+                            <div class="form-section-title">
+                                ENDEREÇO DE ENTREGA
+                            </div>
+
+                            <div class="field">
+                                <label>Rua</label>
+                                <input type="text" placeholder="Nome da rua">
+                            </div>
+
+                            <div class="row">
+
+                                <div class="field">
+                                    <label>Número</label>
+                                    <input type="text" placeholder="Nº">
+                                </div>
+
+                                <div class="field">
+                                    <label>CEP</label>
+                                    <input type="text" placeholder="00000-000">
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="field">
+                                    <label>Cidade</label>
+                                    <input type="text" placeholder="Cidade">
+                                </div>
+
+                                <div class="field">
+                                    <label>Estado</label>
+
+                                    <select>
+                                        <option>MG</option>
+                                        <option>SP</option>
+                                        <option>RJ</option>
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="pedido-aside">
+
+                        <div class="summary-card">
+
+                            <div class="summary-title">
+                                RESUMO
+                            </div>
+
+                            <div class="summary-item">
+                                <div class="summary-item-name">
+                                    Camiseta Oversized x2
+                                </div>
+
+                                <div class="summary-item-val">
+                                    R$ 179,80
+                                </div>
+                            </div>
+
+                            <div class="summary-item">
+                                <div class="summary-item-name">
+                                    Calça Cargo x1
+                                </div>
+
+                                <div class="summary-item-val">
+                                    R$ 199,00
+                                </div>
+                            </div>
+
+                            <div class="summary-total">
+
+                                <div class="summary-total-label">
+                                    TOTAL
+                                </div>
+
+                                <div class="summary-total-val">
+                                    R$ 378,80
+                                </div>
+
+                            </div>
+
+                            <button class="btn-confirm-white"
+                                onclick="alert('Venda registrada (simulação)')">
+                                CONFIRMAR VENDA
+                            </button>
+
+                            <a href="vendas.html">
+                                <button class="btn-cancel-ghost">
+                                    CANCELAR
+                                </button>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

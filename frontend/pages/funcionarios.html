@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura Farm — Funcionários</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+</head>
+<body>
+<div class="app-layout">
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-text">AURA</div>
+      <div class="logo-sub">FARM</div>
+    </div>
+
+    <div class="nav">
+      <div class="nav-section">
+        <div class="nav-label">Geral</div>
+        <a href="dashboard.html" class="nav-item">
+          <i class="ti ti-layout-dashboard"></i> Dashboard
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-label">Catálogo</div>
+        <a href="produtos.html" class="nav-item">
+          <i class="ti ti-shirt"></i> Produtos
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-label">Vendas</div>
+        <a href="vendas.html" class="nav-item">
+          <i class="ti ti-shopping-cart"></i> Vendas
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-label">Fornecedores</div>
+        <a href="fornecedores.html" class="nav-item">
+          <i class="ti ti-truck"></i> Fornecedores
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-label">Funcionários</div>
+        <a href="funcionarios.html" class="nav-item active">
+          <i class="ti ti-users"></i> Funcionários
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-label">Conta</div>
+        <a href="perfil.html" class="nav-item">
+          <i class="ti ti-user"></i> Meu Perfil
+        </a>
+        <a href="login.html" class="nav-item">
+          <i class="ti ti-logout"></i> Sair
+        </a>
+      </div>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="user-info">
+        <div class="user-avatar">AM</div>
+        <div>
+          <div class="user-name">Andrey Messias</div>
+          <div class="user-role">Administrador</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="page-title">FUNCIONÁRIOS</div>
+      <div class="breadcrumb">Cadastros / Funcionários</div>
+    </div>
+
+    <div class="content">
+      <div class="toolbar">
+        <div class="search-box">
+          <i class="ti ti-search"></i>
+          <input type="text" placeholder="Buscar funcionário...">
+        </div>
+
+        <a href="novo-funcionario.html">
+          <button class="btn-new">+ NOVO FUNCIONÁRIO</button>
+        </a>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>CPF</th>
+              <th>E-mail</th>
+              <th>Cargo</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>Andrey Messias</td>
+              <td>123.456.789-00</td>
+              <td>andrey@aura.com</td>
+              <td>Gerente</td>
+              <td>
+                <div class="actions">
+                  <a href="editar-funcionario.html?id=1">
+                    <button class="btn-edit">EDITAR</button>
+                  </a>
+                  <button class="btn-del">DEMITIR</button>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Luiz Fellipe</td>
+              <td>987.654.321-00</td>
+              <td>luiz@aura.com</td>
+              <td>Funcionário</td>
+              <td>
+                <div class="actions">
+                  <a href="editar-funcionario.html?id=2">
+                    <button class="btn-edit">EDITAR</button>
+                  </a>
+                  <button class="btn-del">DEMITIR</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination">
+        <div class="pag-info">Exibindo 2 de 2 funcionários</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

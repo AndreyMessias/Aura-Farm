@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Farm — Fornecedores</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+</head>
+
+<body>
+
+    <div class="app-layout">
+
+        <div class="sidebar">
+
+            <div class="sidebar-logo">
+                <div class="logo-text">AURA</div>
+                <div class="logo-sub">FARM</div>
+            </div>
+
+            <div class="nav">
+
+                <div class="nav-section">
+                    <div class="nav-label">Geral</div>
+
+                    <a href="dashboard.html" class="nav-item">
+                        <i class="ti ti-layout-dashboard"></i>
+                        Dashboard
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-label">Catálogo</div>
+
+                    <a href="produtos.html" class="nav-item">
+                        <i class="ti ti-shirt"></i>
+                        Produtos
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-label">Vendas</div>
+
+                    <a href="vendas.html" class="nav-item">
+                        <i class="ti ti-shopping-cart"></i>
+                        Vendas
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-label">Fornecedores</div>
+
+                    <a href="fornecedores.html" class="nav-item active">
+                        <i class="ti ti-truck"></i>
+                        Fornecedores
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-label">Funcionários</div>
+
+                    <a href="funcionarios.html" class="nav-item">
+                        <i class="ti ti-users"></i>
+                        Funcionários
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-label">Conta</div>
+
+                    <a href="perfil.html" class="nav-item">
+                        <i class="ti ti-user"></i>
+                        Meu Perfil
+                    </a>
+
+                    <a href="login.html" class="nav-item">
+                        <i class="ti ti-logout"></i>
+                        Sair
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="sidebar-footer">
+
+                <div class="user-info">
+
+                    <div class="user-avatar">
+                        AM
+                    </div>
+
+                    <div>
+                        <div class="user-name">
+                            Andrey Messias
+                        </div>
+
+                        <div class="user-role">
+                            Administrador
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="main">
+
+            <div class="topbar">
+
+                <div class="page-title">
+                    FORNECEDORES
+                </div>
+
+                <div class="breadcrumb">
+                    Cadastros / Fornecedores
+                </div>
+
+            </div>
+
+            <div class="content">
+
+                <div class="toolbar">
+
+                    <div class="search-box">
+                        <i class="ti ti-search"></i>
+                        <input type="text" placeholder="Buscar fornecedor...">
+                    </div>
+
+                    <a href="novo-fornecedor.html">
+                        <button class="btn-new">
+                            + NOVO FORNECEDOR
+                        </button>
+                    </a>
+
+                </div>
+
+                <div class="table-wrap">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Razão Social</th>
+                                <th>CNPJ</th>
+                                <th>Telefone</th>
+                                <th>E-mail</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>Fornecedor A</td>
+                                <td>12.345.678/0001-90</td>
+                                <td>(11) 2222-3333</td>
+                                <td>contato@fornecedora.com</td>
+
+                                <td>
+                                    <div class="actions">
+
+                                        <a href="editar-fornecedor.html?id=1">
+                                            <button class="btn-edit">
+                                                EDITAR
+                                            </button>
+                                        </a>
+
+                                        <button class="btn-del"
+                                            onclick="alert('Excluir fornecedor (simulação)')">
+                                            EXCLUIR
+                                        </button>
+
+                                    </div>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>Fornecedor B</td>
+                                <td>98.765.432/0001-21</td>
+                                <td>(11) 4444-5555</td>
+                                <td>vendas@fornecedorb.com</td>
+
+                                <td>
+                                    <div class="actions">
+
+                                        <a href="editar-fornecedor.html?id=2">
+                                            <button class="btn-edit">
+                                                EDITAR
+                                            </button>
+                                        </a>
+
+                                        <button class="btn-del"
+                                            onclick="alert('Excluir fornecedor')">
+                                            EXCLUIR
+                                        </button>
+
+                                    </div>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>Fornecedor C</td>
+                                <td>11.111.111/0001-11</td>
+                                <td>(11) 9999-8888</td>
+                                <td>fornecedorc@email.com</td>
+
+                                <td>
+                                    <div class="actions">
+
+                                        <a href="editar-fornecedor.html?id=3">
+                                            <button class="btn-edit">
+                                                EDITAR
+                                            </button>
+                                        </a>
+
+                                        <button class="btn-del"
+                                            onclick="alert('Excluir fornecedor')">
+                                            EXCLUIR
+                                        </button>
+
+                                    </div>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <div class="pagination">
+                    <div class="pag-info">
+                        Exibindo 3 de 3 fornecedores
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

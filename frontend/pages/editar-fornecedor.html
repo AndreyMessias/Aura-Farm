@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Farm — Editar Fornecedor</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+</head>
+
+<body>
+
+    <div class="app-layout">
+
+        <div class="sidebar">
+
+            <div class="sidebar-logo">
+                <div class="logo-text">AURA</div>
+                <div class="logo-sub">FARM</div>
+            </div>
+
+            <div class="nav">
+
+                <div class="nav-section">
+                    <div class="nav-label">Geral</div>
+
+                    <a href="dashboard.html" class="nav-item">
+                        <i class="ti ti-layout-dashboard"></i>
+                        Dashboard
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-label">Catálogo</div>
+
+                    <a href="produtos.html" class="nav-item">
+                        <i class="ti ti-shirt"></i>
+                        Produtos
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-label">Vendas</div>
+
+                    <a href="vendas.html" class="nav-item">
+                        <i class="ti ti-shopping-cart"></i>
+                        Vendas
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-label">Fornecedores</div>
+
+                    <a href="fornecedores.html" class="nav-item active">
+                        <i class="ti ti-truck"></i>
+                        Fornecedores
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-label">Funcionários</div>
+
+                    <a href="funcionarios.html" class="nav-item">
+                        <i class="ti ti-users"></i>
+                        Funcionários
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-label">Conta</div>
+
+                    <a href="perfil.html" class="nav-item">
+                        <i class="ti ti-user"></i>
+                        Meu Perfil
+                    </a>
+
+                    <a href="login.html" class="nav-item">
+                        <i class="ti ti-logout"></i>
+                        Sair
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="sidebar-footer">
+
+                <div class="user-info">
+
+                    <div class="user-avatar">
+                        AM
+                    </div>
+
+                    <div>
+                        <div class="user-name">
+                            Andrey Messias
+                        </div>
+
+                        <div class="user-role">
+                            Administrador
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="main">
+
+            <div class="topbar">
+
+                <div class="page-title">
+                    EDITAR FORNECEDOR
+                </div>
+
+                <div class="breadcrumb">
+                    Fornecedores / Editar
+                </div>
+
+            </div>
+
+            <div class="content">
+
+                <div class="form-card" style="max-width: 700px;">
+
+                    <div class="form-section-title">
+                        ALTERAR FORNECEDOR
+                    </div>
+
+                    <div class="field">
+                        <label>Razão Social / Nome</label>
+                        <input type="text" value="Fornecedor A">
+                    </div>
+
+                    <div class="field">
+                        <label>CNPJ</label>
+                        <input type="text" value="12.345.678/0001-90">
+                    </div>
+
+                    <div class="row">
+
+                        <div class="field">
+                            <label>Telefone</label>
+                            <input type="text" value="(11) 2222-3333">
+                        </div>
+
+                        <div class="field">
+                            <label>E-mail</label>
+                            <input type="email" value="contato@fornecedora.com">
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="field">
+                            <label>Cidade</label>
+                            <input type="text" value="São Paulo">
+                        </div>
+
+                        <div class="field">
+                            <label>Estado</label>
+                            <input type="text" value="SP">
+                        </div>
+
+                    </div>
+
+                    <div class="field">
+                        <label>País</label>
+                        <input type="text" value="Brasil">
+                    </div>
+
+                    <div class="form-actions">
+
+                        <a href="fornecedores.html">
+                            <button class="btn-outline">
+                                CANCELAR
+                            </button>
+                        </a>
+
+                        <button class="btn-dark" onclick="alert('Fornecedor atualizado (simulação)')">
+                            SALVAR
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
