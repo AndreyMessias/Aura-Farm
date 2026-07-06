@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aura Farm — Nova Venda</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 </head>
@@ -88,21 +88,12 @@
             <div class="sidebar-footer">
 
                 <div class="user-info">
-
-                    <div class="user-avatar">
-                        AM
-                    </div>
+                    <div class="user-avatar">--</div>
 
                     <div>
-                        <div class="user-name">
-                            Andrey Messias
-                        </div>
-
-                        <div class="user-role">
-                            Administrador
-                        </div>
+                        <div class="user-name">--</div>
+                        <div class="user-role">--</div>
                     </div>
-
                 </div>
 
             </div>
@@ -125,6 +116,8 @@
 
             <div class="content">
 
+                <div id="erro-venda" class="form-error"></div>
+
                 <div class="pedido-layout">
 
                     <div class="pedido-col">
@@ -135,88 +128,8 @@
                                 SELECIONAR PRODUTOS
                             </div>
 
-                            <div class="product-item">
-
-                                <div class="product-check">
-                                    <input type="checkbox" checked>
-
-                                    <div>
-                                        <div class="product-info-name">
-                                            Camiseta Oversized
-                                        </div>
-
-                                        <div class="product-info-price">
-                                            R$ 89,90 — Preto, M
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="qty-control">
-                                    <button class="qty-btn">-</button>
-
-                                    <div class="qty-val">
-                                        2
-                                    </div>
-
-                                    <button class="qty-btn">+</button>
-                                </div>
-
-                            </div>
-
-                            <div class="product-item">
-
-                                <div class="product-check">
-                                    <input type="checkbox" checked>
-
-                                    <div>
-                                        <div class="product-info-name">
-                                            Calça Cargo
-                                        </div>
-
-                                        <div class="product-info-price">
-                                            R$ 199,00 — Bege, 40
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="qty-control">
-                                    <button class="qty-btn">-</button>
-
-                                    <div class="qty-val">
-                                        1
-                                    </div>
-
-                                    <button class="qty-btn">+</button>
-                                </div>
-
-                            </div>
-
-                            <div class="product-item">
-
-                                <div class="product-check">
-                                    <input type="checkbox">
-
-                                    <div>
-                                        <div class="product-info-name">
-                                            Moletom Aura
-                                        </div>
-
-                                        <div class="product-info-price">
-                                            R$ 159,00 — Off-white, G
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="qty-control">
-                                    <button class="qty-btn">-</button>
-
-                                    <div class="qty-val">
-                                        1
-                                    </div>
-
-                                    <button class="qty-btn">+</button>
-                                </div>
-
+                            <div id="lista-produtos-venda">
+                                <p class="empty-state">Carregando produtos...</p>
                             </div>
 
                         </div>
@@ -229,19 +142,33 @@
 
                             <div class="field">
                                 <label>Rua</label>
-                                <input type="text" placeholder="Nome da rua">
+                                <input type="text" id="venda-rua" placeholder="Nome da rua">
                             </div>
 
                             <div class="row">
 
                                 <div class="field">
                                     <label>Número</label>
-                                    <input type="text" placeholder="Nº">
+                                    <input type="text" id="venda-numero" placeholder="Nº">
                                 </div>
 
                                 <div class="field">
-                                    <label>CEP</label>
-                                    <input type="text" placeholder="00000-000">
+                                    <label>Bairro</label>
+                                    <input type="text" id="venda-bairro" placeholder="Bairro">
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="field">
+                                    <label>CEP (somente números)</label>
+                                    <input type="text" id="venda-cep" maxlength="8" placeholder="00000000">
+                                </div>
+
+                                <div class="field">
+                                    <label>Complemento</label>
+                                    <input type="text" id="venda-complemento" placeholder="Opcional">
                                 </div>
 
                             </div>
@@ -250,18 +177,12 @@
 
                                 <div class="field">
                                     <label>Cidade</label>
-                                    <input type="text" placeholder="Cidade">
+                                    <input type="text" id="venda-cidade" placeholder="Cidade">
                                 </div>
 
                                 <div class="field">
                                     <label>Estado</label>
-
-                                    <select>
-                                        <option>MG</option>
-                                        <option>SP</option>
-                                        <option>RJ</option>
-                                    </select>
-
+                                    <select id="venda-estado"></select>
                                 </div>
 
                             </div>
@@ -278,25 +199,7 @@
                                 RESUMO
                             </div>
 
-                            <div class="summary-item">
-                                <div class="summary-item-name">
-                                    Camiseta Oversized x2
-                                </div>
-
-                                <div class="summary-item-val">
-                                    R$ 179,80
-                                </div>
-                            </div>
-
-                            <div class="summary-item">
-                                <div class="summary-item-name">
-                                    Calça Cargo x1
-                                </div>
-
-                                <div class="summary-item-val">
-                                    R$ 199,00
-                                </div>
-                            </div>
+                            <div id="resumo-itens-venda"></div>
 
                             <div class="summary-total">
 
@@ -304,14 +207,13 @@
                                     TOTAL
                                 </div>
 
-                                <div class="summary-total-val">
-                                    R$ 378,80
+                                <div class="summary-total-val" id="resumo-total-venda">
+                                    R$ 0,00
                                 </div>
 
                             </div>
 
-                            <button class="btn-confirm-white"
-                                onclick="alert('Venda registrada (simulação)')">
+                            <button class="btn-confirm-white" id="btn-confirmar-venda">
                                 CONFIRMAR VENDA
                             </button>
 
@@ -333,7 +235,9 @@
 
     </div>
 
-    <script src="script.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/layout.js"></script>
+    <script src="../js/vendas.js"></script>
 
 </body>
 
