@@ -158,3 +158,14 @@ function exibirErro(elemento, mensagem) {
   elemento.textContent = mensagem;
   elemento.style.display = mensagem ? "block" : "none";
 }
+
+// Troca o passo atual do formulário por uma mensagem de sucesso e redireciona,
+// em vez de usar alert() nativo do navegador.
+function mostrarSucessoERedirecionar(passoAtualEl, passoSucessoEl, destino, delayMs = 1800) {
+  passoAtualEl.style.display = "none";
+  document.getElementById("link-voltar-login")?.style.setProperty("display", "none");
+  passoSucessoEl.style.display = "block";
+  setTimeout(() => {
+    window.location.href = destino;
+  }, delayMs);
+}

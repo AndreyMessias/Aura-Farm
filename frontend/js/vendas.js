@@ -157,7 +157,7 @@ function renderizarSeletorProdutos() {
 
   container.innerHTML = produtosCatalogo.map((produto) => {
     const marcado = itensSelecionados[produto.codigo] !== undefined;
-    const quantidade = itensSelecionados[produto.codigo] || 1;
+    const quantidade = itensSelecionados[produto.codigo] || 0;
     const tamanho = produto.tamanho === "UNICO" ? "Único" : produto.tamanho;
 
     return `
@@ -184,12 +184,14 @@ function renderizarSeletorProdutos() {
 function alternarProdutoSelecionado(checkbox) {
   const item = checkbox.closest(".product-item");
   const codigo = item.dataset.codigo;
+  const valorEl = item.querySelector(".qty-val");
 
   if (checkbox.checked) {
-    const quantidadeAtual = Number(item.querySelector(".qty-val").textContent);
-    itensSelecionados[codigo] = quantidadeAtual || 1;
+    itensSelecionados[codigo] = 1;
+    valorEl.textContent = 1;
   } else {
     delete itensSelecionados[codigo];
+    valorEl.textContent = 0;
   }
 
   atualizarResumoVenda();
@@ -201,11 +203,16 @@ function alterarQuantidade(codigo, delta) {
   const checkbox = item.querySelector('input[type="checkbox"]');
 
   let valor = Number(valorEl.textContent) + delta;
-  if (valor < 1) valor = 1;
+  if (valor < 0) valor = 0;
   valorEl.textContent = valor;
 
-  if (!checkbox.checked) checkbox.checked = true;
-  itensSelecionados[codigo] = valor;
+  if (valor === 0) {
+    checkbox.checked = false;
+    delete itensSelecionados[codigo];
+  } else {
+    checkbox.checked = true;
+    itensSelecionados[codigo] = valor;
+  }
 
   atualizarResumoVenda();
 }

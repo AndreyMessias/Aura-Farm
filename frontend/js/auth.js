@@ -128,8 +128,7 @@ function configurarRecuperarSenha() {
         })
       });
 
-      alert("Senha redefinida com sucesso. Faça login com a nova senha.");
-      window.location.href = "login.html";
+      mostrarSucessoERedirecionar(passo3, document.getElementById("passo-4-sucesso"), "login.html");
     } catch (erro) {
       exibirErro(erroEl, erro.message);
     }
@@ -195,8 +194,7 @@ function configurarPrimeiroAcesso() {
         body: JSON.stringify({ email: emailValidado, senha, confirmacaoSenha })
       });
 
-      alert("Senha definida com sucesso. Faça login.");
-      window.location.href = "login.html";
+      mostrarSucessoERedirecionar(passo2, document.getElementById("passo-3-sucesso"), "login.html");
     } catch (erro) {
       exibirErro(erroEl, erro.message);
     }
