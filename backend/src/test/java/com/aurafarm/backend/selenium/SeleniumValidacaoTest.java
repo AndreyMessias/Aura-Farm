@@ -176,7 +176,7 @@ class SeleniumValidacaoTest {
     }
 
     @Test
-    @DisplayName("CT-006 - Busca de funcionário pelo CPF deve filtrar a listagem")
+    @DisplayName("CT-006 - Busca de funcionário pelo CPF sem pontuação deve filtrar a listagem")
     void ct006_buscarFuncionarioPeloCpf() {
         fazerLogin("admin@aurafarm.com", "admin123");
         wait.until(ExpectedConditions.urlContains("dashboard.html"));
@@ -184,7 +184,7 @@ class SeleniumValidacaoTest {
         driver.get(BASE_URL + "funcionarios.html");
         wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector("#tabela-funcionarios tr[data-id]"), 0));
 
-        driver.findElement(By.id("busca-funcionario")).sendKeys("397.112.914-52");
+        driver.findElement(By.id("busca-funcionario")).sendKeys("39711291452");
 
         wait.until(driverAtual -> driver.findElements(By.cssSelector("#tabela-funcionarios tr[data-id]"))
                 .stream()

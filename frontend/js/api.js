@@ -150,6 +150,12 @@ function escaparHtml(texto) {
   return div.innerHTML;
 }
 
+// Remove pontuação de máscara (CPF, CNPJ, telefone) antes de comparar, pra
+// "39711291452" encontrar "397.112.914-52" nas buscas das listagens.
+function normalizarBusca(texto) {
+  return texto.toLowerCase().replace(/[.\-/()]/g, "");
+}
+
 function exibirErro(elemento, mensagem) {
   if (!elemento) {
     alert(mensagem);

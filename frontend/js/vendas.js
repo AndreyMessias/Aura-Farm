@@ -12,9 +12,9 @@ async function inicializarListaVendas() {
 
   const busca = document.getElementById("busca-venda");
   busca?.addEventListener("input", () => {
-    const termo = busca.value.toLowerCase();
+    const termo = normalizarBusca(busca.value);
     document.querySelectorAll("#tabela-vendas tr[data-id]").forEach((linha) => {
-      linha.style.display = linha.innerText.toLowerCase().includes(termo) ? "" : "none";
+      linha.style.display = normalizarBusca(linha.innerText).includes(termo) ? "" : "none";
     });
   });
 }
