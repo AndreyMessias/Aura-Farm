@@ -790,6 +790,34 @@
     border-radius: 0;
   }
 
+  /* ── Mensagens ── */
+  .form-error {
+    display: none;
+    background: #ffebee;
+    border: 1.5px solid #c62828;
+    color: #c62828;
+    font-size: 12px;
+    padding: 10px 14px;
+    margin-bottom: 20px;
+  }
+
+  .form-success {
+    display: none;
+    background: #e8f5e9;
+    border: 1.5px solid #2e7d32;
+    color: #2e7d32;
+    font-size: 12px;
+    padding: 10px 14px;
+    margin-bottom: 20px;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 40px 16px;
+    color: var(--gray-text);
+    font-size: 13px;
+  }
+
   /* ── Misc ── */
   .bottom-note { margin-top: 32px; font-size: 11px; color: #bbb; text-align: center; }
   .forgot { text-align: right; margin-top: -12px; margin-bottom: 28px; }

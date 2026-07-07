@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aura Farm — Vendas</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 </head>
@@ -88,21 +88,12 @@
             <div class="sidebar-footer">
 
                 <div class="user-info">
-
-                    <div class="user-avatar">
-                        AM
-                    </div>
+                    <div class="user-avatar">--</div>
 
                     <div>
-                        <div class="user-name">
-                            Andrey Messias
-                        </div>
-
-                        <div class="user-role">
-                            Administrador
-                        </div>
+                        <div class="user-name">--</div>
+                        <div class="user-role">--</div>
                     </div>
-
                 </div>
 
             </div>
@@ -129,7 +120,7 @@
 
                     <div class="search-box">
                         <i class="ti ti-search"></i>
-                        <input type="text" placeholder="Buscar venda...">
+                        <input type="text" id="busca-venda" placeholder="Buscar venda...">
                     </div>
 
                     <a href="nova-venda.html">
@@ -140,6 +131,8 @@
 
                 </div>
 
+                <div id="erro-vendas" class="form-error"></div>
+
                 <div class="table-wrap">
 
                     <table>
@@ -149,7 +142,7 @@
                             <tr>
                                 <th>Venda</th>
                                 <th>Data</th>
-                                <th>Cliente</th>
+                                <th>Entrega</th>
                                 <th>Itens</th>
                                 <th>Total</th>
                                 <th>Status</th>
@@ -158,134 +151,8 @@
 
                         </thead>
 
-                        <tbody>
-
-                            <tr>
-
-                                <td>#0042</td>
-                                <td>07/06/2026</td>
-                                <td>João Silva</td>
-                                <td>2 itens</td>
-                                <td>R$ 289,00</td>
-
-                                <td>
-                                    <span class="badge badge-sent">
-                                        Enviado
-                                    </span>
-                                </td>
-
-                                <td>
-
-                                    <div class="actions">
-
-                                        <button
-                                            class="btn-edit"
-                                            onclick="alterarStatus(this)">
-                                            STATUS
-                                        </button>
-
-                                        <a href="editar-venda.html?id=0042">
-                                            <button class="btn-edit">
-                                                EDITAR
-                                            </button>
-                                        </a>
-
-                                        <button
-                                            class="btn-del"
-                                            onclick="alert('Cancelar venda (simulação)')">
-                                            CANCELAR
-                                        </button>
-
-                                    </div>
-
-                                </td>
-
-                            </tr>
-
-                            <tr>
-
-                                <td>#0041</td>
-                                <td>06/06/2026</td>
-                                <td>Maria Souza</td>
-                                <td>1 item</td>
-                                <td>R$ 159,00</td>
-
-                                <td>
-                                    <span class="badge badge-pending">
-                                        Pendente
-                                    </span>
-                                </td>
-
-                                <td>
-
-                                    <div class="actions">
-
-                                        <button
-                                            class="btn-edit"
-                                            onclick="alterarStatus(this)">
-                                            STATUS
-                                        </button>
-
-                                        <a href="editar-venda.html?id=0041">
-                                            <button class="btn-edit">
-                                                EDITAR
-                                            </button>
-                                        </a>
-
-                                        <button
-                                            class="btn-del"
-                                            onclick="alert('Cancelar venda')">
-                                            CANCELAR
-                                        </button>
-
-                                    </div>
-
-                                </td>
-
-                            </tr>
-
-                            <tr>
-
-                                <td>#0040</td>
-                                <td>05/06/2026</td>
-                                <td>Carlos Lima</td>
-                                <td>2 itens</td>
-                                <td>R$ 197,00</td>
-
-                                <td>
-                                    <span class="badge badge-done">
-                                        Entregue
-                                    </span>
-                                </td>
-
-                                <td>
-
-                                    <div class="actions">
-
-                                        <button
-                                            class="btn-edit"
-                                            onclick="alterarStatus(this)">
-                                            STATUS
-                                        </button>
-
-                                        <a href="editar-venda.html?id=0040">
-                                            <button class="btn-edit">
-                                                EDITAR
-                                            </button>
-                                        </a>
-
-                                        <button
-                                            class="btn-del"
-                                            onclick="alert('Cancelar venda')">
-                                            CANCELAR
-                                        </button>
-
-                                    </div>
-
-                                </td>
-
-                            </tr>
-
+                        <tbody id="tabela-vendas">
+                            <tr><td colspan="7" class="empty-state">Carregando...</td></tr>
                         </tbody>
 
                     </table>
@@ -293,23 +160,7 @@
                 </div>
 
                 <div class="pagination">
-
-                    <div class="pag-info">
-                        Exibindo 3 de 42 vendas
-                    </div>
-
-                    <div class="pag-btns">
-
-                        <button class="pag-btn active">
-                            1
-                        </button>
-
-                        <button class="pag-btn">
-                            2
-                        </button>
-
-                    </div>
-
+                    <div class="pag-info" id="pag-info-vendas"></div>
                 </div>
 
             </div>
@@ -318,7 +169,9 @@
 
     </div>
 
-    <script src="script.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/layout.js"></script>
+    <script src="../js/vendas.js"></script>
 
 </body>
 

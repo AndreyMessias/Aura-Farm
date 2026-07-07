@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Aura Farm — Primeiro Acesso</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <div class="auth-page">
+
+        <div class="auth-left">
+
+            <div class="logo-area">
+
+                <div class="logo-text">
+                    AURA
+                </div>
+
+                <div class="logo-sub">
+                    FARM
+                </div>
+
+                <div class="logo-scratch"></div>
+
+                <div class="logo-tagline">
+                    Streetwear & Culture
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="auth-right">
+
+            <div class="form-title">
+                PRIMEIRO ACESSO
+            </div>
+
+            <div class="form-subtitle">
+                Se seu gerente acabou de te cadastrar, defina sua senha aqui
+            </div>
+
+            <div id="erro-primeiro-acesso" class="form-error"></div>
+            <div id="sucesso-primeiro-acesso" class="form-success"></div>
+
+            <div id="passo-1-validar-email">
+
+                <div class="field">
+                    <label>E-mail cadastrado pelo gerente</label>
+                    <input type="email" id="email-primeiro-acesso" placeholder="seu@email.com">
+                </div>
+
+                <button class="btn-primary" id="btn-validar-email">
+                    CONTINUAR
+                </button>
+
+            </div>
+
+            <div id="passo-2-definir-senha" style="display:none">
+
+                <div class="field">
+                    <label>Nova senha</label>
+                    <input type="password" id="senha-primeiro-acesso" placeholder="********">
+                </div>
+
+                <div class="field">
+                    <label>Confirmar senha</label>
+                    <input type="password" id="confirmar-senha-primeiro-acesso" placeholder="********">
+                </div>
+
+                <button class="btn-primary" id="btn-definir-senha">
+                    DEFINIR SENHA
+                </button>
+
+            </div>
+
+            <div id="passo-3-sucesso" style="display:none; text-align:center;">
+                <div style="font-size:40px; margin-bottom:12px;">✓</div>
+                <div class="form-subtitle">Senha definida com sucesso. Redirecionando para o login...</div>
+            </div>
+
+            <div
+                id="link-voltar-login"
+                class="login-link"
+                style="margin-top:20px">
+
+                <a href="login.html">
+                    Voltar ao login
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/auth.js"></script>
+
+</body>
+
+</html>

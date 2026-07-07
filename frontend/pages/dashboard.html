@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aura Farm — Dashboard</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 </head>
@@ -90,16 +90,16 @@
                 <div class="user-info">
 
                     <div class="user-avatar">
-                        AM
+                        --
                     </div>
 
                     <div>
                         <div class="user-name">
-                            Andrey Messias
+                            --
                         </div>
 
                         <div class="user-role">
-                            Administrador
+                            --
                         </div>
                     </div>
 
@@ -117,9 +117,7 @@
                     DASHBOARD
                 </div>
 
-                <div class="breadcrumb">
-                    07 de junho de 2026
-                </div>
+                <div class="breadcrumb" id="data-hoje"></div>
 
             </div>
 
@@ -133,8 +131,8 @@
                             Total de Produtos
                         </div>
 
-                        <div class="stat-value">
-                            48
+                        <div class="stat-value" id="stat-total-produtos">
+                            -
                         </div>
 
                         <div class="stat-sub">
@@ -149,8 +147,8 @@
                             Vendas Pendentes
                         </div>
 
-                        <div class="stat-value">
-                            12
+                        <div class="stat-value" id="stat-vendas-pendentes">
+                            -
                         </div>
 
                         <div class="stat-sub">
@@ -165,8 +163,8 @@
                             Vendas Enviadas
                         </div>
 
-                        <div class="stat-value">
-                            07
+                        <div class="stat-value" id="stat-vendas-enviadas">
+                            -
                         </div>
 
                         <div class="stat-sub">
@@ -181,12 +179,12 @@
                             Vendas Entregues
                         </div>
 
-                        <div class="stat-value">
-                            93
+                        <div class="stat-value" id="stat-vendas-entregues">
+                            -
                         </div>
 
                         <div class="stat-sub">
-                            este mês
+                            no total
                         </div>
 
                     </div>
@@ -214,51 +212,15 @@
                         <thead>
                             <tr>
                                 <th>Venda</th>
-                                <th>Cliente</th>
+                                <th>Entrega</th>
                                 <th>Itens</th>
                                 <th>Total</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
 
-                        <tbody>
-
-                            <tr>
-                                <td>#0042</td>
-                                <td>João Silva</td>
-                                <td>2 itens</td>
-                                <td>R$ 289,00</td>
-                                <td>
-                                    <span class="badge badge-sent">
-                                        Enviado
-                                    </span>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>#0041</td>
-                                <td>Maria Souza</td>
-                                <td>1 item</td>
-                                <td>R$ 159,00</td>
-                                <td>
-                                    <span class="badge badge-pending">
-                                        Pendente
-                                    </span>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>#0040</td>
-                                <td>Carlos Lima</td>
-                                <td>2 itens</td>
-                                <td>R$ 197,00</td>
-                                <td>
-                                    <span class="badge badge-done">
-                                        Entregue
-                                    </span>
-                                </td>
-                            </tr>
-
+                        <tbody id="tabela-ultimas-vendas">
+                            <tr><td colspan="5" class="empty-state">Carregando...</td></tr>
                         </tbody>
 
                     </table>
@@ -271,7 +233,9 @@
 
     </div>
 
-    <script src="script.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/layout.js"></script>
+    <script src="../js/dashboard.js"></script>
 
 </body>
 

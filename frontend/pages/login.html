@@ -6,7 +6,7 @@
 
     <title>Aura Farm — Login</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
@@ -40,6 +40,8 @@
             Acesse sua conta para continuar
         </div>
 
+        <div id="erro-login" class="form-error"></div>
+
         <div class="field">
 
             <label>E-MAIL</label>
@@ -70,13 +72,18 @@
 
         </div>
 
-        <button class="btn-primary" onclick="validarLogin()">
+        <button class="btn-primary" id="btn-entrar">
             ENTRAR
         </button>
 
+        <div class="login-link">
+            Primeiro acesso? <a href="primeiro-acesso.html">Defina sua senha</a>
+        </div>
+
 </div>
 
-<script src="script.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/auth.js"></script>
 
 </body>
 </html>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aura Farm — Produtos</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 </head>
@@ -88,21 +88,12 @@
             <div class="sidebar-footer">
 
                 <div class="user-info">
-
-                    <div class="user-avatar">
-                        AM
-                    </div>
+                    <div class="user-avatar">--</div>
 
                     <div>
-                        <div class="user-name">
-                            Andrey Messias
-                        </div>
-
-                        <div class="user-role">
-                            Administrador
-                        </div>
+                        <div class="user-name">--</div>
+                        <div class="user-role">--</div>
                     </div>
-
                 </div>
 
             </div>
@@ -129,16 +120,18 @@
 
                     <div class="search-box">
                         <i class="ti ti-search"></i>
-                        <input type="text" placeholder="Buscar produto...">
+                        <input type="text" id="busca-produto" placeholder="Buscar produto...">
                     </div>
 
-                    <a href="novo-produto.html">
+                    <a href="novo-produto.html" id="link-novo-produto">
                         <button class="btn-new">
                             + NOVO PRODUTO
                         </button>
                     </a>
 
                 </div>
+
+                <div id="erro-produtos" class="form-error"></div>
 
                 <div class="table-wrap">
 
@@ -149,149 +142,15 @@
                             <tr>
                                 <th>Produto</th>
                                 <th>Tamanho</th>
-                                <th>Cor</th>
                                 <th>Preço</th>
                                 <th>Estoque</th>
-                                <th>Fornecedor</th>
                                 <th>Ações</th>
                             </tr>
 
                         </thead>
 
-                        <tbody>
-
-                            <tr>
-
-                                <td>
-                                    <div class="cell-name">
-                                        Camiseta Oversized
-                                    </div>
-
-                                    <div class="cell-sub">
-                                        100% algodão
-                                    </div>
-                                </td>
-
-                                <td>M, G, GG</td>
-                                <td>Preto</td>
-                                <td>R$ 89,90</td>
-
-                                <td>
-                                    <span class="badge badge-ok">
-                                        32 un.
-                                    </span>
-                                </td>
-
-                                <td>Fornecedor A</td>
-
-                                <td>
-
-                                    <div class="actions">
-
-                                        <a href="editar-produto.html">
-                                            <button class="btn-edit">
-                                                EDITAR
-                                            </button>
-                                        </a>
-
-                                        <button class="btn-del">
-                                            EXCLUIR
-                                        </button>
-
-                                    </div>
-
-                                </td>
-
-                            </tr>
-
-                            <tr>
-
-                                <td>
-                                    <div class="cell-name">
-                                        Moletom Aura
-                                    </div>
-
-                                    <div class="cell-sub">
-                                        Fleece pesado
-                                    </div>
-                                </td>
-
-                                <td>P, M, G</td>
-                                <td>Off-white</td>
-                                <td>R$ 159,00</td>
-
-                                <td>
-                                    <span class="badge badge-ok">
-                                        18 un.
-                                    </span>
-                                </td>
-
-                                <td>Fornecedor B</td>
-
-                                <td>
-
-                                    <div class="actions">
-
-                                        <a href="editar-produto.html">
-                                            <button class="btn-edit">
-                                                EDITAR
-                                            </button>
-                                        </a>
-
-                                        <button class="btn-del">
-                                            EXCLUIR
-                                        </button>
-
-                                    </div>
-
-                                </td>
-
-                            </tr>
-
-                            <tr>
-
-                                <td>
-                                    <div class="cell-name">
-                                        Calça Cargo
-                                    </div>
-
-                                    <div class="cell-sub">
-                                        Ripstop tático
-                                    </div>
-                                </td>
-
-                                <td>38, 40, 42</td>
-                                <td>Bege</td>
-                                <td>R$ 199,00</td>
-
-                                <td>
-                                    <span class="badge badge-low">
-                                        4 un.
-                                    </span>
-                                </td>
-
-                                <td>Fornecedor C</td>
-
-                                <td>
-
-                                    <div class="actions">
-
-                                        <a href="editar-produto.html">
-                                            <button class="btn-edit">
-                                                EDITAR
-                                            </button>
-                                        </a>
-
-                                        <button class="btn-del">
-                                            EXCLUIR
-                                        </button>
-
-                                    </div>
-
-                                </td>
-
-                            </tr>
-
+                        <tbody id="tabela-produtos">
+                            <tr><td colspan="5" class="empty-state">Carregando...</td></tr>
                         </tbody>
 
                     </table>
@@ -299,23 +158,7 @@
                 </div>
 
                 <div class="pagination">
-
-                    <div class="pag-info">
-                        Exibindo 3 de 48 produtos
-                    </div>
-
-                    <div class="pag-btns">
-
-                        <button class="pag-btn active">
-                            1
-                        </button>
-
-                        <button class="pag-btn">
-                            2
-                        </button>
-
-                    </div>
-
+                    <div class="pag-info" id="pag-info-produtos"></div>
                 </div>
 
             </div>
@@ -324,7 +167,9 @@
 
     </div>
 
-    <script src="script.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/layout.js"></script>
+    <script src="../js/produtos.js"></script>
 
 </body>
 

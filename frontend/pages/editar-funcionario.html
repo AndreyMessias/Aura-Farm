@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aura Farm — Editar Funcionário</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 </head>
@@ -88,21 +88,12 @@
             <div class="sidebar-footer">
 
                 <div class="user-info">
-
-                    <div class="user-avatar">
-                        AM
-                    </div>
+                    <div class="user-avatar">--</div>
 
                     <div>
-                        <div class="user-name">
-                            Andrey Messias
-                        </div>
-
-                        <div class="user-role">
-                            Administrador
-                        </div>
+                        <div class="user-name">--</div>
+                        <div class="user-role">--</div>
                     </div>
-
                 </div>
 
             </div>
@@ -131,21 +122,23 @@
                         ALTERAR DADOS
                     </div>
 
+                    <div id="erro-funcionario" class="form-error"></div>
+
                     <div class="field">
                         <label>Nome completo</label>
-                        <input type="text" value="Andrey Messias">
+                        <input type="text" id="funcionario-nome">
                     </div>
 
                     <div class="row">
 
                         <div class="field">
                             <label>CPF</label>
-                            <input type="text" value="123.456.789-00" disabled>
+                            <input type="text" id="funcionario-cpf" disabled>
                         </div>
 
                         <div class="field">
                             <label>E-mail</label>
-                            <input type="email" value="andrey@aura.com" disabled>
+                            <input type="email" id="funcionario-email" disabled>
                         </div>
 
                     </div>
@@ -154,15 +147,15 @@
 
                         <div class="field">
                             <label>Telefone</label>
-                            <input type="text" value="(11) 99999-9999">
+                            <input type="text" id="funcionario-telefone">
                         </div>
 
                         <div class="field">
                             <label>Cargo</label>
 
-                            <select>
-                                <option selected>Gerente</option>
-                                <option>Funcionário</option>
+                            <select id="funcionario-cargo">
+                                <option value="GERENTE">Gerente</option>
+                                <option value="FUNCIONARIO">Funcionário</option>
                             </select>
 
                         </div>
@@ -173,19 +166,19 @@
 
                         <div class="field">
                             <label>Cidade</label>
-                            <input type="text" value="São Paulo">
+                            <input type="text" id="funcionario-cidade">
                         </div>
 
                         <div class="field">
                             <label>Estado</label>
-                            <input type="text" value="SP">
+                            <select id="funcionario-estado"></select>
                         </div>
 
                     </div>
 
                     <div class="field">
                         <label>País</label>
-                        <input type="text" value="Brasil">
+                        <input type="text" id="funcionario-pais">
                     </div>
 
                     <div class="form-actions">
@@ -196,7 +189,7 @@
                             </button>
                         </a>
 
-                        <button class="btn-dark" onclick="alert('Funcionário atualizado (simulação)')">
+                        <button class="btn-dark" id="btn-salvar-funcionario">
                             SALVAR
                         </button>
 
@@ -210,7 +203,9 @@
 
     </div>
 
-    <script src="script.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/layout.js"></script>
+    <script src="../js/funcionarios.js"></script>
 
 </body>
 

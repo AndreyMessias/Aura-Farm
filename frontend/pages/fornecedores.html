@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aura Farm — Fornecedores</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 </head>
@@ -88,21 +88,12 @@
             <div class="sidebar-footer">
 
                 <div class="user-info">
-
-                    <div class="user-avatar">
-                        AM
-                    </div>
+                    <div class="user-avatar">--</div>
 
                     <div>
-                        <div class="user-name">
-                            Andrey Messias
-                        </div>
-
-                        <div class="user-role">
-                            Administrador
-                        </div>
+                        <div class="user-name">--</div>
+                        <div class="user-role">--</div>
                     </div>
-
                 </div>
 
             </div>
@@ -129,7 +120,7 @@
 
                     <div class="search-box">
                         <i class="ti ti-search"></i>
-                        <input type="text" placeholder="Buscar fornecedor...">
+                        <input type="text" id="busca-fornecedor" placeholder="Buscar fornecedor...">
                     </div>
 
                     <a href="novo-fornecedor.html">
@@ -140,6 +131,8 @@
 
                 </div>
 
+                <div id="erro-fornecedores" class="form-error"></div>
+
                 <div class="table-wrap">
 
                     <table>
@@ -148,92 +141,13 @@
                             <tr>
                                 <th>Razão Social</th>
                                 <th>CNPJ</th>
-                                <th>Telefone</th>
                                 <th>E-mail</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
 
-                        <tbody>
-
-                            <tr>
-
-                                <td>Fornecedor A</td>
-                                <td>12.345.678/0001-90</td>
-                                <td>(11) 2222-3333</td>
-                                <td>contato@fornecedora.com</td>
-
-                                <td>
-                                    <div class="actions">
-
-                                        <a href="editar-fornecedor.html?id=1">
-                                            <button class="btn-edit">
-                                                EDITAR
-                                            </button>
-                                        </a>
-
-                                        <button class="btn-del"
-                                            onclick="alert('Excluir fornecedor (simulação)')">
-                                            EXCLUIR
-                                        </button>
-
-                                    </div>
-                                </td>
-
-                            </tr>
-
-                            <tr>
-
-                                <td>Fornecedor B</td>
-                                <td>98.765.432/0001-21</td>
-                                <td>(11) 4444-5555</td>
-                                <td>vendas@fornecedorb.com</td>
-
-                                <td>
-                                    <div class="actions">
-
-                                        <a href="editar-fornecedor.html?id=2">
-                                            <button class="btn-edit">
-                                                EDITAR
-                                            </button>
-                                        </a>
-
-                                        <button class="btn-del"
-                                            onclick="alert('Excluir fornecedor')">
-                                            EXCLUIR
-                                        </button>
-
-                                    </div>
-                                </td>
-
-                            </tr>
-
-                            <tr>
-
-                                <td>Fornecedor C</td>
-                                <td>11.111.111/0001-11</td>
-                                <td>(11) 9999-8888</td>
-                                <td>fornecedorc@email.com</td>
-
-                                <td>
-                                    <div class="actions">
-
-                                        <a href="editar-fornecedor.html?id=3">
-                                            <button class="btn-edit">
-                                                EDITAR
-                                            </button>
-                                        </a>
-
-                                        <button class="btn-del"
-                                            onclick="alert('Excluir fornecedor')">
-                                            EXCLUIR
-                                        </button>
-
-                                    </div>
-                                </td>
-
-                            </tr>
-
+                        <tbody id="tabela-fornecedores">
+                            <tr><td colspan="4" class="empty-state">Carregando...</td></tr>
                         </tbody>
 
                     </table>
@@ -241,9 +155,7 @@
                 </div>
 
                 <div class="pagination">
-                    <div class="pag-info">
-                        Exibindo 3 de 3 fornecedores
-                    </div>
+                    <div class="pag-info" id="pag-info-fornecedores"></div>
                 </div>
 
             </div>
@@ -252,7 +164,9 @@
 
     </div>
 
-    <script src="script.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/layout.js"></script>
+    <script src="../js/fornecedores.js"></script>
 
 </body>
 

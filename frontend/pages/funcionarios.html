@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aura Farm — Funcionários</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 </head>
 <body>
@@ -64,10 +64,10 @@
 
     <div class="sidebar-footer">
       <div class="user-info">
-        <div class="user-avatar">AM</div>
+        <div class="user-avatar">--</div>
         <div>
-          <div class="user-name">Andrey Messias</div>
-          <div class="user-role">Administrador</div>
+          <div class="user-name">--</div>
+          <div class="user-role">--</div>
         </div>
       </div>
     </div>
@@ -83,13 +83,15 @@
       <div class="toolbar">
         <div class="search-box">
           <i class="ti ti-search"></i>
-          <input type="text" placeholder="Buscar funcionário...">
+          <input type="text" id="busca-funcionario" placeholder="Buscar funcionário...">
         </div>
 
         <a href="novo-funcionario.html">
           <button class="btn-new">+ NOVO FUNCIONÁRIO</button>
         </a>
       </div>
+
+      <div id="erro-funcionarios" class="form-error"></div>
 
       <div class="table-wrap">
         <table>
@@ -103,47 +105,21 @@
             </tr>
           </thead>
 
-          <tbody>
-            <tr>
-              <td>Andrey Messias</td>
-              <td>123.456.789-00</td>
-              <td>andrey@aura.com</td>
-              <td>Gerente</td>
-              <td>
-                <div class="actions">
-                  <a href="editar-funcionario.html?id=1">
-                    <button class="btn-edit">EDITAR</button>
-                  </a>
-                  <button class="btn-del">DEMITIR</button>
-                </div>
-              </td>
-            </tr>
-
-            <tr>
-              <td>Luiz Fellipe</td>
-              <td>987.654.321-00</td>
-              <td>luiz@aura.com</td>
-              <td>Funcionário</td>
-              <td>
-                <div class="actions">
-                  <a href="editar-funcionario.html?id=2">
-                    <button class="btn-edit">EDITAR</button>
-                  </a>
-                  <button class="btn-del">DEMITIR</button>
-                </div>
-              </td>
-            </tr>
+          <tbody id="tabela-funcionarios">
+            <tr><td colspan="5" class="empty-state">Carregando...</td></tr>
           </tbody>
         </table>
       </div>
 
       <div class="pagination">
-        <div class="pag-info">Exibindo 2 de 2 funcionários</div>
+        <div class="pag-info" id="pag-info-funcionarios"></div>
       </div>
     </div>
   </div>
 </div>
 
-<script src="script.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/layout.js"></script>
+<script src="../js/funcionarios.js"></script>
 </body>
 </html>

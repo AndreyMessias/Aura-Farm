@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aura Farm — Editar Fornecedor</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 </head>
@@ -88,21 +88,12 @@
             <div class="sidebar-footer">
 
                 <div class="user-info">
-
-                    <div class="user-avatar">
-                        AM
-                    </div>
+                    <div class="user-avatar">--</div>
 
                     <div>
-                        <div class="user-name">
-                            Andrey Messias
-                        </div>
-
-                        <div class="user-role">
-                            Administrador
-                        </div>
+                        <div class="user-name">--</div>
+                        <div class="user-role">--</div>
                     </div>
-
                 </div>
 
             </div>
@@ -131,26 +122,28 @@
                         ALTERAR FORNECEDOR
                     </div>
 
+                    <div id="erro-fornecedor" class="form-error"></div>
+
                     <div class="field">
                         <label>Razão Social / Nome</label>
-                        <input type="text" value="Fornecedor A">
+                        <input type="text" id="fornecedor-nome">
                     </div>
 
                     <div class="field">
-                        <label>CNPJ</label>
-                        <input type="text" value="12.345.678/0001-90">
+                        <label>CNPJ (somente números)</label>
+                        <input type="text" id="fornecedor-cnpj" maxlength="14">
                     </div>
 
                     <div class="row">
 
                         <div class="field">
                             <label>Telefone</label>
-                            <input type="text" value="(11) 2222-3333">
+                            <input type="text" id="fornecedor-telefone">
                         </div>
 
                         <div class="field">
                             <label>E-mail</label>
-                            <input type="email" value="contato@fornecedora.com">
+                            <input type="email" id="fornecedor-email">
                         </div>
 
                     </div>
@@ -159,19 +152,19 @@
 
                         <div class="field">
                             <label>Cidade</label>
-                            <input type="text" value="São Paulo">
+                            <input type="text" id="fornecedor-cidade">
                         </div>
 
                         <div class="field">
                             <label>Estado</label>
-                            <input type="text" value="SP">
+                            <select id="fornecedor-estado"></select>
                         </div>
 
                     </div>
 
                     <div class="field">
                         <label>País</label>
-                        <input type="text" value="Brasil">
+                        <input type="text" id="fornecedor-pais">
                     </div>
 
                     <div class="form-actions">
@@ -182,7 +175,7 @@
                             </button>
                         </a>
 
-                        <button class="btn-dark" onclick="alert('Fornecedor atualizado (simulação)')">
+                        <button class="btn-dark" id="btn-salvar-fornecedor">
                             SALVAR
                         </button>
 
@@ -196,7 +189,9 @@
 
     </div>
 
-    <script src="script.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/layout.js"></script>
+    <script src="../js/fornecedores.js"></script>
 
 </body>
 
